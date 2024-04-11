@@ -1,0 +1,90 @@
+.listaJuegos .generos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content ,140px));
+  gap: 0.5em;
+  justify-content: center;
+
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.25em;
+}
+
+/* Aplico estilo a todos los generos */
+.listaJuegos .genero {
+  height: 140px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Aplico estilo a cada genero por particular */
+.listaJuegos .generos .estrategia {
+  background-color: blue;
+  background-image: url('./../../assets/img/juegos//listaJuegos/generoEstrategia.svg');
+}
+
+.listaJuegos .generos .shootEmUp {
+  background-color: green;
+  background-image: url('./../../assets/img/juegos/listaJuegos/generoShootEmUp.svg');
+}
+
+.listaJuegos .generos .shooter {
+  background-color: red;
+  background-image: url('./../../assets/img/juegos/listaJuegos/generoShooter.svg');
+}
+
+.listaJuegos .generos .plataformas {
+  background-color: yellow;
+  background-image: url('./../../assets/img/juegos/listaJuegos/generoPlataformas.svg');
+}
+
+.listaJuegos .generos .rpg {
+  background-color: orange;
+  background-image: url('./../../assets/img/juegos/listaJuegos/generoRpg.svg');
+}
+
+.listaJuegos .generos .deportes {
+  background-color: purple;
+  background-image: url('./../../assets/img/juegos/listaJuegos/generoDeportes.svg');
+}
+
+.listaJuegos .generos .lucha {
+  background-color: pink;
+  background-image: url('./../../assets/img/juegos/listaJuegos/generoLucha.svg');
+}
+
+@media screen and (min-width: 365px) {
+  .listaJuegos .generos {
+    grid-template-columns: repeat(2, minmax(min-content ,170px));
+  }
+  
+  .listaJuegos .genero {
+    height: 170px;
+  }  
+}
+
+@media screen and (min-width: 576px){
+  .listaJuegos .generos {
+    grid-template-columns: repeat(3, 170px);
+    grid-template-rows: repeat(2, 170px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .listaJuegos .generos {
+    grid-template-columns: repeat(4, 170px);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .listaJuegos .generos {
+    grid-template-columns: repeat(7, 170px);
+    grid-template-rows: none;
+  }
+
+}

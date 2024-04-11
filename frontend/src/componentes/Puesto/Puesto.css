@@ -1,0 +1,100 @@
+#puesto {
+  background-color: #fff;
+  margin: 1em !important;
+  padding: 0 1em !important;
+
+  font-weight: 600;
+}
+
+#puesto .portada img {
+  width: 100%;
+  max-inline-size: 300px;
+  height: 100%;
+  max-width: 87px;
+  object-fit: cover;
+  padding: 0.5em 1em;
+}
+
+#puesto .valoracion {
+  color: #FFD700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#puesto .valoracion img {
+  width: 29px;
+  user-select: none;
+}
+
+#puesto .valoracion p {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 1.5em;
+
+  margin: 0 0.1em;
+}
+
+#puesto .numeroPuesto {
+  color: #3B2A9F;
+  font-size: 3em;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#puesto .nombreJuego div {
+  font-size: 0.9em;
+  margin: 0;
+}
+
+
+@media screen and (min-width: 576px) {
+  #puesto {
+    padding: 0 !important;
+  }
+
+  #puesto .portada img {
+    padding: 0.3em;
+  }
+
+  #puesto .nombreJuego {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+
+  #puesto .nombreJuego div {
+    font-size: 1.5em;
+    text-align: start;
+    margin-left: 1em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #puesto .nombreJuego div {
+    margin-left: 2em;
+  }
+}
+
+@media screen and (min-width: 992px){
+  #puesto {
+    margin: 1em 10vw !important;
+  }
+}
+
+@media screen and (min-width: 1400px){
+  #puesto .valoracion img {
+    width: 55px;
+  }
+  
+  #puesto .valoracion p {
+    font-size: 3em;
+  }
+
+  #puesto .nombreJuego div {
+    font-size: 2.25em;
+  }
+}

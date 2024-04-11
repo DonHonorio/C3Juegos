@@ -1,0 +1,38 @@
+/* Quitamos los margin y padding que nos afectan negativamente de boostrap */
+
+.container .col-12, .container .col-4, .container .col-sm-6, .container .col-md-12 {
+  padding: 0 !important;
+}
+.container-fluid .row,.container-fluid .col-3,.container-fluid .col-6,.container-fluid .col-9, .container-fluid .col-12, .container-fluid .col-4, .container-fluid .col-sm-6, .container-fluid .col-md-12 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.container, .container-fluid {
+  padding: 0;
+}
+
+/* COLOR DE FONDO de toda la página y fuente de letra*/
+body {
+  font-family: "Lexend", sans-serif;
+
+  /* VERSIÓN SOBRIA */
+  background-color: #3B2A9F;
+  /* VERSIÓN CRAZY */
+  /* background: linear-gradient(45deg,  #364F59, #37858D, #48BFAF, #86F9BC, #dfd7f5); */
+  background-size: 400% 400%;
+  position: relative;
+  animation: cambiar 8s ease-in-out infinite;
+}
+
+@keyframes cambiar {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

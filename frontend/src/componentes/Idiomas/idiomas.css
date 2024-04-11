@@ -1,0 +1,27 @@
+#idiomas img {
+  width: 2.6em;
+  text-align: center;
+}
+
+#idiomas p.textoIdioma {
+  display: inline;
+  font-size: 1.1em;
+  padding-left: 0.3em;
+  user-select: none;
+}
+
+#idiomas li button {
+  text-align: center;
+}
+
+#idiomas ul.dropdown-menu {
+  width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+  #idiomas ul.dropdown-menu {
+    width: fit-content;
+    min-width: fit-content;
+    margin: auto;
+  }
+}

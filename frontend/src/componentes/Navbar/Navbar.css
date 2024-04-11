@@ -1,0 +1,119 @@
+#navbar {
+    width: 99.9%;
+    position: absolute;
+    top: 0;
+    padding-top: 1.5em !important;
+
+    background-color: transparent;
+    color: #fff;
+}
+
+/* logo */
+#navbar a img {
+    width: max-content;
+    max-width: 130px;
+
+    margin-left: 20%;
+}
+
+/* resto de imágenes */
+#navbar img {
+    width: 50px;
+}
+
+/* Arreglar problema hamburguesa despliegue se expande */
+#navbar .hamburguesa {
+    width: auto;
+}
+
+/* Aquí hago que los elementos del navbar estén bien alineados */
+#listaNavbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Para que cuando pulsemos el logo de marcapersonal sepamos que es un enlace */
+#navbar a {
+    cursor: pointer;
+}
+
+/* hamburgesa de despliegue está blanca*/
+.navbar-toggler {
+    border-color: #fff !important; /* Cambia el color del borde */
+}
+  
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+#navbar button.navbar-toggler {
+    margin-right: 2em;
+}
+
+/* Botones de registrarse e iniciarSesion */
+#navbar .botonRegistrarse input {
+    background-color: #3B44F6;
+    max-width: 190px;
+}
+
+#navbar .botonIniciarSesion input {
+    background-color: transparent;
+    border: 1px solid #fff;
+    max-width: 190px;
+}
+
+#navbar li.botonera_avatar {
+    min-width: 228px;
+}
+
+/* Enlaces */
+
+#navbar a {
+    color: #fff;
+    display: block !important;
+    text-decoration: none;
+}
+
+#navbar .enlace {
+    margin-bottom: 1em !important;
+}
+
+@media screen and (max-width: 992px){
+
+    #navbar .botonRegistrarse input {
+        margin-bottom: 1em;
+    }
+
+    #navbar .botonera {
+        margin-top: 3em;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 992px){
+    
+    #navbar p {
+        margin-bottom: 2em;
+    }
+
+    li.botonera {
+        margin-top: 1em;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px){
+    #navbar .botonRegistrarse input {
+        padding: 0.4em 0em;
+    }
+    #navbar .botonIniciarSesion input {
+        padding-left: 1em;
+    }
+}
+
+@media screen and (min-width: 992px){
+    /* Para que en versiones grandes el navbar se quede fijo arriba */
+    #navbar {
+        position: fixed;
+    }
+}

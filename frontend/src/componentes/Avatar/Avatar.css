@@ -1,0 +1,17 @@
+#avatar {
+  display: flex;
+  justify-content: center;
+}
+
+#avatar .linkAvatar {
+  width: auto;
+}
+
+#avatar p {
+  display: inline;
+  margin-right: 2em;
+}
+
+#avatar .linkAvatar img {
+  margin: 0;
+}

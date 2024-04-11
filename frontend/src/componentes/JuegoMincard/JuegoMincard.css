@@ -1,0 +1,53 @@
+#juegoMincard .portadaJuego img {
+  width: 100%;
+  max-inline-size: 300px;
+  height: 100%;
+  object-fit: cover;
+  padding: 1em;
+}
+
+#juegoMincard .likes, #juegoMincard .valoracion{
+  padding: 0.5em 0.5em;
+  
+  color: #fff;
+  font-weight: 400;
+  font-size: 1em;
+}
+
+#juegoMincard .likes img, #juegoMincard .valoracion img {
+  padding: 0 0.3em 0 0;
+  position: relative;
+  top: -4px;
+}
+
+
+#juegoMincard p {
+  display: inline-block;
+}
+
+@media screen and (min-width: 360px) and (max-width: 576px) {
+  #juegoMincard .likes, #juegoMincard .valoracion{
+    font-size: 1.3em;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  #juegoMincard .likes, #juegoMincard .valoracion{
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  #juegoMincard .likes, #juegoMincard .valoracion{
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (min-width: 1225px){
+  #juegoMincard .likes, #juegoMincard .valoracion{
+    padding: 0.5em 0.5em;
+    
+    font-weight: 500;
+    font-size: 1.4em;
+  }
+}

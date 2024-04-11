@@ -1,0 +1,63 @@
+#totales {
+  max-width: 400px;
+
+  background-color: #1C140F;
+  color: #fff;
+
+  padding: 4em 2em !important;
+  margin: 8em 2.5em !important;
+  border-radius: 10px;
+}
+
+#totales .palo_vertical {
+  display: none;
+}
+#totales .palo_horizontal {
+  margin: 1em 0 2em 0 !important;
+}
+
+#totales .icono {
+  padding: 0 2em 0 0 !important;
+}
+
+
+#totales .informacion .numero {
+  font-weight: 700;
+  font-size: 1.5em;
+}
+#totales .informacion .texto {
+  font-weight: 400;
+  font-size: 1.25em;
+}
+
+
+@media screen and (min-width: 1400px){
+  #totales {
+    min-width: 1300px;
+
+    /* padding: 4em 5em !important; */
+    padding: 4em 0 !important;
+  }
+
+  #totales .seccion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5em !important;
+    max-width: none;
+  }
+
+
+  #totales .palos {
+    display: flex;
+    justify-content: center;
+  }
+
+  #totales .palo_horizontal {
+    display: none;
+  }
+  #totales .palo_vertical {
+    display: block;
+  }
+
+}
