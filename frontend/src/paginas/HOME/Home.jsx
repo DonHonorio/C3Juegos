@@ -21,24 +21,15 @@ import juegoRankingSrc2 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 import juegoRankingSrc3 from './../../assets/img/juegos/ranking/FotoJuegoRanking3.svg';
 import juegoRankingSrc4 from './../../assets/img/juegos/ranking/FotoJuegoRanking4.svg';
 import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking5.svg';
-import useProducts from '../../hooks/useProducts';
+import useGames from '../../hooks/useGames';
 
 const endpoint = 'http://localhost:8000/api';
 
 const Home = () => {
     const idioma = useContext(IdiomaContext);
-    const products = useProducts();
+    const games = useGames();
 
-    // const [products, setProducts] = useState([]);
-
-    // useEffect( ()=> {
-    //     getAllProducts()
-    // }, [] );
-
-    // const getAllProducts = async () => {
-    //     const response = await axios.get(`${endpoint}/products`);
-    //     setProducts(response.data);
-    // }
+    if(games.buscando) console.log(games.listaGames);
 
     return (
         <main className="row" id="home">
@@ -86,9 +77,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="col-12 puesto">
-                        <Puesto juegoSrc={juegoRankingSrc1} nombre={
-                        (products.buscando) ? <AjaxLoader></AjaxLoader>
-                                                  : products.listaProducts[0].description} valoracion={5} puesto={1}></Puesto>
+                        <Puesto juegoSrc={juegoRankingSrc1} nombre={'NO MAN´S SKKY'} valoracion={5} puesto={1}></Puesto>
                     </div>
                     <div className="col-12 puesto">
                         <Puesto juegoSrc={juegoRankingSrc2} nombre={'HELLDIVERS™ 2'} valoracion={4.7} puesto={2}></Puesto>
@@ -135,7 +124,17 @@ const Home = () => {
 
                 
                 <div className="row lista">
-                    <div className="col-12 col-sm-6 col-lg-3">
+                    {(games.buscando) ? <AjaxLoader></AjaxLoader>
+                                        : games.listaGames.map((game) => {
+                                            const arrayImagenes = [juegoSrc1, juegoSrc2, juegoSrc3, juegoSrc4, juegoSrc5, juegoSrc6, juegoSrc7, juegoSrc8];
+
+                                            return  <div className="col-12 col-sm-6 col-lg-3" key={game.id}>
+                                                        <JuegoMincard juegoSrc={arrayImagenes[Math.floor(Math.random() * arrayImagenes.length)]}></JuegoMincard>
+                                                    </div>
+                                        })                                                  
+                    }
+                    
+                    {/* <div className="col-12 col-sm-6 col-lg-3">
                         <JuegoMincard juegoSrc={juegoSrc1}></JuegoMincard>
                     </div>
                     <div className="col-12 col-sm-6 col-lg-3">
@@ -182,7 +181,7 @@ const Home = () => {
                     </div>
                     <div className="col-12 col-sm-6 col-lg-3">
                         <JuegoMincard juegoSrc={juegoSrc8}></JuegoMincard>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         </main>

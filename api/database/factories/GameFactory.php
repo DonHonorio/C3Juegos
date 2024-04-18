@@ -51,21 +51,24 @@ class GameFactory extends Factory
     ];
 
     protected $generos = [
+        "Estrategia",
+        "Shoot 'em up",
+        "Shooter",
+        "Plataformas",
+        "RPG",
+        "Deportes",
+        "Lucha",
+
+
         "Aventura",
         "Acción",
         "Rol",
-        "Deportes",
-        "Estrategia",
         "Simulación",
         "Carreras",
         "Indie",
         "Multijugador",
-        "Shooter",
-        "Plataformas",
-        "Lucha",
         "Survival",
         "Battle Royale",
-        "RPG",
         "MMORPG",
         "MOBA",
         "Arcade",

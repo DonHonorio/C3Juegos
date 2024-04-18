@@ -31,7 +31,7 @@ const idiomas = {
         titulo: "Juegos",
         generos: "Géneros",
         estrategia: "ESTRATEGIA",
-        shootEmUp: "SHOOT'EM UP",
+        shootEmUp: "SHOOT´EM UP",
         shooter: "SHOOTER",
         plataformas: "PLATAFORMAS",
         rpg: "RPG",

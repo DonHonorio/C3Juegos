@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('nombreJuego', 60); //->unique(); //Tiene que ser unique
-            $table->string('genero', 20);
+            $table->string('nombreJuego', 60)->unique(); //Tiene que ser unique
+            $table->enum('genero', $this->generos);
             $table->longText('historia')->nullable();
             $table->longText('controles')->nullable();
             $table->string('portada', 100)->nullable();
@@ -34,4 +34,14 @@ return new class extends Migration
     {
         Schema::dropIfExists('games');
     }
+
+    protected $generos = [
+        "ESTRATEGIA",
+        "SHOOT´EM UP",
+        "SHOOTER",
+        "PLATAFORMAS",
+        "RPG",
+        "DEPORTES",
+        "LUCHA",
+    ];
 };

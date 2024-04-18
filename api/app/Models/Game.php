@@ -10,6 +10,14 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nombreJuego',
+        'genero',
+        'historia',
+        'controles',
+        'portada'
+    ];
+
     // Un Juego pertenece solo a un propietario
     public function user()
     {
