@@ -4,15 +4,14 @@ import IdiomaContext from '../../contextos/IdiomaContext';
 import usuarioSrc from './../../assets/img/juegos/totales/user.svg';
 import comentarioSrc from './../../assets/img/juegos/totales/comment.svg';
 import juegoSrc from './../../assets/img/juegos/totales/games.svg';
-import useGames from '../../hooks/useGames';
+import useHome from '../../hooks/useHome';
 
-const Totales = () => {
+const Totales = (props) => {
     const idioma = useContext(IdiomaContext);
-    const games = useGames();
 
-  const post = {usuarios: 24,
-                opiniones: 130,
-                juegos: (games.buscando) ? 0 : games.listaGames.length};
+  const post = {usuarios: (props.buscando) ? 'cargando...' : props.users.length,
+                opiniones: (props.buscando) ? 'cargando...' : props.comments.length,
+                juegos: (props.buscando) ? 'cargando...' : props.games.length};
   const {usuarios, opiniones, juegos} = post;
 
   return (

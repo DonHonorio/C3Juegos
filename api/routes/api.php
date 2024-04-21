@@ -10,7 +10,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/', HomeController::class)->name('home');
+Route::get('/home', HomeController::class)->name('home');
 
 Route::controller(GameController::class)->group(function () {
     Route::get('/games', 'index');

@@ -22,15 +22,19 @@ import juegoRankingSrc3 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 import juegoRankingSrc4 from './../../assets/img/juegos/ranking/FotoJuegoRanking4.svg';
 import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking5.svg';
 import useGames from '../../hooks/useGames';
+import useHome from '../../hooks/useHome';
 
 const endpoint = 'http://localhost:8000/api';
 
 const Home = () => {
     const idioma = useContext(IdiomaContext);
-    const games = useGames();
+    const home = useHome();
+    const { users, games, comments, likesGames, ratingsGames, avgRatings, ranking } = (home.listaHome) ? home.listaHome : {users: [], games: [], comments: []};
 
-    if(games.buscando) console.log(games.listaGames);
+    (home) ? console.log(home) : console.log('No hay home');
+    // (!home.buscando && avgRatings) ? console.log(avgRatings) : console.log('No hay home');
 
+    
     return (
         <main className="row" id="home">
             <section className="cabecera col-12">
@@ -76,21 +80,16 @@ const Home = () => {
                             <p className='col-4 col-sm-1 text-center'>{idioma.landingPage.ranking.puesto}</p>
                         </div>
                     </div>
-                    <div className="col-12 puesto">
-                        <Puesto juegoSrc={juegoRankingSrc1} nombre={'NO MAN´S SKKY'} valoracion={5} puesto={1}></Puesto>
-                    </div>
-                    <div className="col-12 puesto">
-                        <Puesto juegoSrc={juegoRankingSrc2} nombre={'HELLDIVERS™ 2'} valoracion={4.7} puesto={2}></Puesto>
-                    </div>
-                    <div className="col-12 puesto">
-                        <Puesto juegoSrc={juegoRankingSrc3} nombre={"Baldur's Gate 3"} valoracion={4.5} puesto={3}></Puesto>
-                    </div>
-                    <div className="col-12 puesto">
-                        <Puesto juegoSrc={juegoRankingSrc4} nombre={'Red Dead Redemption 2'} valoracion={4.4} puesto={4}></Puesto>
-                    </div>
-                    <div className="col-12 puesto">
-                        <Puesto juegoSrc={juegoRankingSrc5} nombre={'Batman™: Arkham Knight'} valoracion={4.4} puesto={5}></Puesto>
-                    </div>
+                    
+                    {(home.buscando) ? <AjaxLoader></AjaxLoader>
+                                        : ranking.map((game, index) => {
+                                            const arrayImagenes = [juegoRankingSrc1, juegoRankingSrc2, juegoRankingSrc3, juegoRankingSrc4, juegoRankingSrc5];
+
+                                            return  <div className="col-12 puesto" key={game.id}>
+                                                        <Puesto juegoSrc={arrayImagenes[index]} nombre={game.nombreJuego} valoracion={game.media} puesto={game.posicion}></Puesto>
+                                                    </div>
+                                        })                                                  
+                    }
                 </div>
             </section>
 
@@ -103,7 +102,7 @@ const Home = () => {
                 </div>
                 <div className="row">
                     <div className="col-12 d-flex justify-content-center">
-                        <Totales></Totales>
+                        <Totales buscando={home.buscando} users={users} games={games} comments={comments}></Totales>
                     </div>
                 </div>
             </section>
@@ -124,64 +123,15 @@ const Home = () => {
 
                 
                 <div className="row lista">
-                    {(games.buscando) ? <AjaxLoader></AjaxLoader>
-                                        : games.listaGames.map((game) => {
+                    {(home.buscando) ? <AjaxLoader></AjaxLoader>
+                                        : games.map((game) => {
                                             const arrayImagenes = [juegoSrc1, juegoSrc2, juegoSrc3, juegoSrc4, juegoSrc5, juegoSrc6, juegoSrc7, juegoSrc8];
 
                                             return  <div className="col-12 col-sm-6 col-lg-3" key={game.id}>
-                                                        <JuegoMincard juegoSrc={arrayImagenes[Math.floor(Math.random() * arrayImagenes.length)]}></JuegoMincard>
+                                                        <JuegoMincard juegoSrc={arrayImagenes[Math.floor(Math.random() * arrayImagenes.length)]} likes={likesGames[game.id]} avgRatings={avgRatings[game.id]} ></JuegoMincard>
                                                     </div>
                                         })                                                  
                     }
-                    
-                    {/* <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc1}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc2}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc3}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc4}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc5}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc6}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc7}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc8}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc1}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc2}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc3}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc4}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc5}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc6}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc7}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc8}></JuegoMincard>
-                    </div> */}
                 </div>
             </section>
         </main>

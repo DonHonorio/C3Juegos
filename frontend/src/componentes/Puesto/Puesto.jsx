@@ -5,6 +5,12 @@ import estrellaSrc from './../../assets/img/juegos/estrellaDorada.svg';
 const Puesto = (props) => {
   const {juegoSrc, nombre, valoracion, puesto} = props;
 
+  function normalizar(valorBruto) {
+    valorBruto = Number(valorBruto).toFixed(1);
+    return (valorBruto.toString().length === 1 && valorBruto.toString() != 0) ? valorBruto.toString().concat(',0') 
+                                                                        : valorBruto.toString().replace('.', ',');
+  }
+
   return (
       <div id='puesto' className='row'>
         <div className="col-4 col-sm-1 numeroPuesto text-center order-1">
@@ -18,7 +24,7 @@ const Puesto = (props) => {
         </div>
         <div className="col-4 col-sm-3 valoracion order-3 order-sm-4">
           <img src={estrellaSrc} alt="estrella" />
-          <p>{(valoracion.toString().length === 1) ? valoracion.toString().concat(',0') : valoracion.toString().replace('.', ',')}</p>
+          <p>{normalizar(valoracion)}</p>
         </div>
       </div>
   );

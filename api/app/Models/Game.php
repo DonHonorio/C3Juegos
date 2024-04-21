@@ -38,4 +38,9 @@ class Game extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function mediaRating()
+    {
+        return $this->ratings()->avg('rating');
+    }
 }
