@@ -1,17 +1,20 @@
-import React, {useContext} from 'react'
-import {useNavigate} from "react-router-dom";
+import React, {useContext } from 'react'
+import { useNavigate } from "react-router-dom";
 import srcLogo from './../../assets/img/logo.svg';
 import './Navbar.css';
 import Idiomas from '../Idiomas/Idiomas';
 import Boton from '../Boton/Boton';
 import Avatar from '../Avatar/Avatar';
 import IdiomaContext from '../../contextos/IdiomaContext';
+import { AuthContext } from '../../contextos/AuthContext';
 import losIdiomas from '../../mocks/mock-idiomas';
 
 import {Link } from 'react-router-dom';
 
 const Navbar = () => {
+
     const navegar = useNavigate();
+    const { auth, login, logout } = useContext(AuthContext);
     const idiomas = useContext(IdiomaContext);
     const idioma = losIdiomas[idiomas.idiomaElegido];
     
@@ -45,23 +48,35 @@ const Navbar = () => {
                             <Idiomas></Idiomas>
                         </div>
                     </li>
-                    <li className="nav-item botonera col-5 d-flex justify-content-center">
-                        <div className="row">
-                            <div className="col-sm-12 col-lg-6 text-center">
-                                <Boton clase={'botonRegistrarse'}  value={idioma.navbar.registrarse}></Boton>
-                            </div>
-                            <div className="col-sm-12 col-lg-6 text-center">
-                                <Boton clase={'botonIniciarSesion'}  value={idioma.navbar.iniciar_sesion}></Boton>
-                            </div>
-                        </div>
-                    </li>
-                    {/* <li className="nav-item botonera botonera_avatar col-5 p-0">
-                        <div className="row">
-                            <div className="col-12 text-center">
-                                <Avatar></Avatar>
-                            </div>
-                        </div>
-                    </li> */}
+                    {
+                        (!auth) ?
+                            <li className="nav-item botonera col-5 d-flex justify-content-center">
+                                <div className="row">
+                                    <div className="col-sm-12 col-lg-6 text-center">
+                                        <Link to="/register">
+                                            <Boton clase={'botonRegistrarse'}  value={idioma.navbar.registrarse}></Boton>
+                                        </Link>
+                                    </div>
+                                    <div className="col-sm-12 col-lg-6 text-center">
+                                        <Link to="/login">
+                                            <Boton clase={'botonIniciarSesion'}  value={idioma.navbar.iniciar_sesion}></Boton>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </li>
+                                    :    
+                            <li className="nav-item botonera botonera_avatar col-5 p-0">
+                                <div className="row">
+                                    {/* <div className="col-12 text-center"> */}
+                                    <div className="col-sm-12 col-lg-6 text-center">
+                                        <Avatar></Avatar>
+                                    </div>
+                                    <div className="col-sm-12 col-lg-6 text-center">
+                                        <Boton buttonFunction={logout} clase={'botonRegistrarse botonCerrarSesion'}  value={idioma.navbar.cerrar_sesion}></Boton>
+                                    </div>
+                                </div>
+                            </li>
+                    }
                 </ul>
             </div>
         </nav>

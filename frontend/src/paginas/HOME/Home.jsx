@@ -1,7 +1,9 @@
 import React,{ useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import "./Home.css";
 import IdiomaContext from '../../contextos/IdiomaContext';
+import { AuthContext } from '../../contextos/AuthContext';
 import Boton from '../../componentes/Boton/Boton';
 import JuegoMincard from '../../componentes/JuegoMincard/JuegoMincard';
 import AjaxLoader from '../../componentes/AjaxLoader/AjaxLoader';
@@ -21,17 +23,16 @@ import juegoRankingSrc2 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 import juegoRankingSrc3 from './../../assets/img/juegos/ranking/FotoJuegoRanking3.svg';
 import juegoRankingSrc4 from './../../assets/img/juegos/ranking/FotoJuegoRanking4.svg';
 import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking5.svg';
-import useGames from '../../hooks/useGames';
 import useHome from '../../hooks/useHome';
-
-const endpoint = 'http://localhost:8000/api';
 
 const Home = () => {
     const idioma = useContext(IdiomaContext);
+    const { auth } = useContext(AuthContext);
     const home = useHome();
     const { users, games, comments, likesGames, ratingsGames, avgRatings, ranking } = (home.listaHome) ? home.listaHome : {users: [], games: [], comments: []};
 
-    (home) ? console.log(home) : console.log('No hay home');
+    // (home) ? console.log(home) : console.log('No hay home');
+    (auth && Object.keys(auth).length !== 0) ? console.log('USUARIO LOGGEADO: ',auth) : console.log('No hay usuario loggeado');
     // (!home.buscando && avgRatings) ? console.log(avgRatings) : console.log('No hay home');
 
     

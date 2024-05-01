@@ -11,8 +11,12 @@ class GameController extends Controller
     
     public function index()
     {
-        $games = Game::all();
-        return $games;
+        // $games = Game::all();
+        // return $games;
+
+        return response()->json([
+            'message' => 'Lista de juegos'
+        ]);
     }
     
     public function store(Request $request)
