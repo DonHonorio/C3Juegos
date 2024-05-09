@@ -6,7 +6,8 @@ const idiomas = {
       acerca_de: "Acerca de",
       siglasIdioma: "ES",
       registrarse: "Registrarse",
-      iniciar_sesion: "Iniciar Sesión"
+      iniciar_sesion: "Iniciar Sesión",
+      cerrar_sesion: "Cerrar Sesión"
     },
     landingPage: {
       cabecera: {
@@ -47,7 +48,8 @@ const idiomas = {
       acerca_de: "About Us",
       siglasIdioma: "EN",
       registrarse: "Sign Up",
-      iniciar_sesion: "Log In"
+      iniciar_sesion: "Log In",
+      cerrar_sesion: "Log Out"
     },
     landingPage: {
       cabecera: {

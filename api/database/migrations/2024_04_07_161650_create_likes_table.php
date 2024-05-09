@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('game_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+
+            // Un usuario no puede darle like a un mismo juego más de una vez
+            $table->unique(['user_id', 'game_id']);
         });
     }
 

@@ -1,14 +1,16 @@
 import React, {useContext} from 'react'
-import {useNavigate} from "react-router-dom";
-import srcLogo from './../../assets/img/logo.svg';
+import { useNavigate, Link} from "react-router-dom";
+import storage from '../../Storage/storage';
+
 import './Navbar.css';
-import Idiomas from '../Idiomas/Idiomas';
-import Boton from '../Boton/Boton';
-import Avatar from '../Avatar/Avatar';
 import IdiomaContext from '../../contextos/IdiomaContext';
 import losIdiomas from '../../mocks/mock-idiomas';
 
-import {Link } from 'react-router-dom';
+import srcLogo from './../../assets/img/logo.svg';
+import Boton from '../Boton/Boton';
+import Avatar from '../Avatar/Avatar';
+import Idiomas from '../Idiomas/Idiomas';
+
 
 const Navbar = () => {
     const navegar = useNavigate();
@@ -19,6 +21,18 @@ const Navbar = () => {
     function navegarHome() {
         navegar("/");
     }
+
+    const logout = async() => {
+        //enviamos la petición de logout al servidor
+        axios.defaults.headers.common['Authorization'] = 'Bearer '+storage.get('authToken');
+        await axios.get('/api/logout');
+
+        storage.remove('authToken');
+        storage.remove('authUser');
+        navegar('/');
+    }
+
+    console.log('STORE GET', storage.get('authUser'));
 
     return (        
         //he usado un navbar de boostrap, que es responsive, y he añadido un botón para cambiar de idioma
@@ -45,23 +59,35 @@ const Navbar = () => {
                             <Idiomas></Idiomas>
                         </div>
                     </li>
-                    <li className="nav-item botonera col-5 d-flex justify-content-center">
-                        <div className="row">
-                            <div className="col-sm-12 col-lg-6 text-center">
-                                <Boton clase={'botonRegistrarse'}  value={idioma.navbar.registrarse}></Boton>
-                            </div>
-                            <div className="col-sm-12 col-lg-6 text-center">
-                                <Boton clase={'botonIniciarSesion'}  value={idioma.navbar.iniciar_sesion}></Boton>
-                            </div>
-                        </div>
-                    </li>
-                    {/* <li className="nav-item botonera botonera_avatar col-5 p-0">
-                        <div className="row">
-                            <div className="col-12 text-center">
-                                <Avatar></Avatar>
-                            </div>
-                        </div>
-                    </li> */}
+                    {
+                        (storage.get('authUser')) ? (
+                            <li className="nav-item botonera botonera_avatar col-5 p-0">
+                                <div className="row">
+                                    <div className="col-sm-12 col-lg-6 text-center">
+                                        <Avatar></Avatar>
+                                    </div>
+                                    <div className="col-sm-12 col-lg-6 text-center">
+                                        <Boton buttonFunction={logout} clase={'botonRegistrarse botonCerrarSesion'}  value={idioma.navbar.cerrar_sesion} />
+                                    </div>
+                                </div>
+                            </li>
+                        ) : (
+                            <li className="nav-item botonera col-5 d-flex justify-content-center">
+                                <div className="row">
+                                    <div className="col-sm-12 col-lg-6 text-center">
+                                        <Link to="/register">
+                                            <Boton clase={'botonRegistrarse'}  value={idioma.navbar.registrarse}></Boton>
+                                        </Link>
+                                    </div>
+                                    <div className="col-sm-12 col-lg-6 text-center">
+                                        <Link to="/login">
+                                            <Boton clase={'botonIniciarSesion'}  value={idioma.navbar.iniciar_sesion}></Boton>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </li>
+                        )
+                    }
                 </ul>
             </div>
         </nav>

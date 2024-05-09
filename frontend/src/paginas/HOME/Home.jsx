@@ -1,5 +1,4 @@
 import React,{ useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import "./Home.css";
 import IdiomaContext from '../../contextos/IdiomaContext';
 import Boton from '../../componentes/Boton/Boton';
@@ -21,17 +20,27 @@ import juegoRankingSrc2 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 import juegoRankingSrc3 from './../../assets/img/juegos/ranking/FotoJuegoRanking3.svg';
 import juegoRankingSrc4 from './../../assets/img/juegos/ranking/FotoJuegoRanking4.svg';
 import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking5.svg';
-import useGames from '../../hooks/useGames';
 import useHome from '../../hooks/useHome';
-
-const endpoint = 'http://localhost:8000/api';
+import sendRequest from '../../servicios/functions';
 
 const Home = () => {
     const idioma = useContext(IdiomaContext);
     const home = useHome();
     const { users, games, comments, likesGames, ratingsGames, avgRatings, ranking } = (home.listaHome) ? home.listaHome : {users: [], games: [], comments: []};
+    const [juegosFavoritos, setJuegosFavoritos] = useState();
 
-    (home) ? console.log(home) : console.log('No hay home');
+    const getJuegoFavorito = async () => {
+        let resultado = await sendRequest('GET', null, '/api/games/favoritos', '', true)
+        setJuegosFavoritos(resultado);
+
+        (resultado.status) ? console.log('JUEGOS FAVORITOS: ' + resultado) : console.log(resultado.games);
+    };
+
+    useEffect(() => {
+        getJuegoFavorito();
+    }, []);
+
+    
     // (!home.buscando && avgRatings) ? console.log(avgRatings) : console.log('No hay home');
 
     

@@ -10,7 +10,7 @@ const Boton = (props) => {
 
     return (
         <div id='boton' className={props.clase}>
-          <input type="button" onClick={gestionarChange} className="" value={props.value}/>
+          <input type="button" onClick={props.buttonFunction} className="" value={props.value}/>
         </div>
     );
 };
