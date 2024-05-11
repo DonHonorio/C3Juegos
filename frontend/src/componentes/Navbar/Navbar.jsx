@@ -16,6 +16,8 @@ const Navbar = () => {
     const navegar = useNavigate();
     const idiomas = useContext(IdiomaContext);
     const idioma = losIdiomas[idiomas.idiomaElegido];
+
+    const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
     
     //navegamos al home
     function navegarHome() {
@@ -32,13 +34,13 @@ const Navbar = () => {
         navegar('/');
     }
 
-    console.log('STORE GET', storage.get('authUser'));
+    console.log('STORE GET', authUser);
 
     return (        
         //he usado un navbar de boostrap, que es responsive, y he añadido un botón para cambiar de idioma
         <nav className="navbar navbar-expand-lg row" id='navbar'>
             <a className="navbar-brand col-2" onClick={navegarHome}>
-                <img src={srcLogo} className="d-inline-block align-top" alt=""/>
+                <img src={srcLogo} className="d-inline-block align-top" alt="logoC3Juegos"/>
             </a>
             {/* botón para desplegar el menú en móvil */}
             <button className="navbar-toggler hamburguesa" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,24 +52,28 @@ const Navbar = () => {
                     <li className="nav-item active col-7 p-0 text-center">
                         <div className="row d-flex align-items-center">
                             <a href="#listaJuegos" className='col-sm-6 col-lg-3 enlace'>{idioma.navbar.ver_juegos}</a>
-                            <Link to="/favoritos/1" className="col-sm-6 col-lg-3">
+                            <Link to={`/favoritos/${authUser.id}`} className="col-sm-6 col-lg-3">
                                 <p >{idioma.navbar.favoritos}</p>
                             </Link>
                             <Link to="/acercaDe" className="col-sm-6 col-lg-3">
                                 <p >{idioma.navbar.acerca_de}</p>
                             </Link>
-                            <Idiomas></Idiomas>
+                            <Idiomas />
                         </div>
                     </li>
                     {
-                        (storage.get('authUser')) ? (
+                        (authUser) ? (
                             <li className="nav-item botonera botonera_avatar col-5 p-0">
                                 <div className="row">
                                     <div className="col-sm-12 col-lg-6 text-center">
-                                        <Avatar></Avatar>
+                                        <Avatar />
                                     </div>
                                     <div className="col-sm-12 col-lg-6 text-center">
-                                        <Boton buttonFunction={logout} clase={'botonRegistrarse botonCerrarSesion'}  value={idioma.navbar.cerrar_sesion} />
+                                        <Boton 
+                                            buttonFunction={logout} 
+                                            clase={'botonRegistrarse botonCerrarSesion'}  
+                                            value={idioma.navbar.cerrar_sesion} 
+                                        />
                                     </div>
                                 </div>
                             </li>

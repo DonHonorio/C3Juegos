@@ -16,6 +16,10 @@ Route::get('/home', HomeController::class)->name('home');
 Route::controller(GameController::class)->group(function () {
     Route::get('/games', 'index');
     Route::get('/game/{id}', 'show');
+    Route::get('/games/likesGames', 'likesGames');
+    Route::get('/games/cantidadLikesGame/{id}', 'cantidadLikesGame');
+    Route::get('/games/avgRatings', 'avgRatings');
+    Route::get('/games/ratingsGames', 'ratingsGames');
 });
 
 Route::controller(AuthController::class)->group(function () {

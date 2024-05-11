@@ -35,23 +35,11 @@ class HomeController extends Controller
             return $game;
         });
 
-        $likesGames = [];
-        $ratingsGames = [];
-        $avgRatings = [];
-
-        foreach ($games as $game) {
-            $ratingsGames[$game->id] = $game->ratings;
-            $likesGames[$game->id] = $game->likes;
-            $avgRatings[$game->id] = $game->mediaRating();
-        }
-
         return response()->json([
+            'status' => true,
             'users' => $users,
             'games' => $games,
             'comments' => $comments,
-            'likesGames' => $likesGames,
-            'ratingsGames' => $ratingsGames,
-            'avgRatings' => $avgRatings,
             'ranking' => $rankingWithRowNumber
         ]);
     }

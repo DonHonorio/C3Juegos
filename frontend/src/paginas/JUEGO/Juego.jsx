@@ -1,13 +1,17 @@
 import React,{ useContext } from 'react';
 import IdiomaContext from '../../contextos/IdiomaContext';
+import DetallesJuego from '../../componentes/DetallesJuego/DetallesJuego';
 
 const Juego = () => {
     const idioma = useContext(IdiomaContext);
 
     return (
-        <div>
-          <h1>Juego</h1>
-        </div>
+        <main className='row' id='showGame'>
+          <DetallesJuego />
+          {/* <div className="">
+            <h1>HOla</h1>
+          </div> */}
+        </main>
     );
 };
 export default Juego;

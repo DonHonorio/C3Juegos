@@ -1,5 +1,14 @@
-import React,{ useContext, useEffect, useState } from 'react';
+import React,{ useContext } from 'react';
+import { Link} from "react-router-dom";
+
 import "./Home.css";
+
+import useHome from '../../hooks/useHome';
+import useLikesGames from '../../hooks/useLikesGames';
+import useAvgRatings from '../../hooks/useAvgRatings';
+import storage from '../../Storage/storage';
+import useJuegosFavoritos from '../../hooks/useJuegosFavoritos';
+
 import IdiomaContext from '../../contextos/IdiomaContext';
 import Boton from '../../componentes/Boton/Boton';
 import JuegoMincard from '../../componentes/JuegoMincard/JuegoMincard';
@@ -20,29 +29,20 @@ import juegoRankingSrc2 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 import juegoRankingSrc3 from './../../assets/img/juegos/ranking/FotoJuegoRanking3.svg';
 import juegoRankingSrc4 from './../../assets/img/juegos/ranking/FotoJuegoRanking4.svg';
 import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking5.svg';
-import useHome from '../../hooks/useHome';
-import sendRequest from '../../servicios/functions';
 
 const Home = () => {
+    // inicializo los hooks
     const idioma = useContext(IdiomaContext);
     const home = useHome();
-    const { users, games, comments, likesGames, ratingsGames, avgRatings, ranking } = (home.listaHome) ? home.listaHome : {users: [], games: [], comments: []};
-    const [juegosFavoritos, setJuegosFavoritos] = useState();
+    const likesGamesState = useLikesGames();
+    const avgRatings = useAvgRatings();
+    const juegosFavoritosState = useJuegosFavoritos('home');
 
-    const getJuegoFavorito = async () => {
-        let resultado = await sendRequest('GET', null, '/api/games/favoritos', '', true)
-        setJuegosFavoritos(resultado);
+    // inicializo las variables
+    const { users, games, comments, ranking } = (home.listaHome) ? home.listaHome : {users: [], games: [], comments: []};
+    const likesGames = (likesGamesState.listaLikesGames) ? likesGamesState.listaLikesGames : [];
 
-        (resultado.status) ? console.log('JUEGOS FAVORITOS: ' + resultado) : console.log(resultado.games);
-    };
-
-    useEffect(() => {
-        getJuegoFavorito();
-    }, []);
-
-    
-    // (!home.buscando && avgRatings) ? console.log(avgRatings) : console.log('No hay home');
-
+    const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
     
     return (
         <main className="row" id="home">
@@ -53,28 +53,39 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="favoritos col-12">
-                <div className="row">
-                    <div className="col-12 titular">
-                        <h2>{idioma.landingPage.favoritos.titulo}</h2>
-                        <Boton clase={'botonTodos'}  value={idioma.landingPage.favoritos.todos}></Boton>
+            {(authUser) ?
+                <section className="favoritos col-12">
+                    <div className="row">
+                        <div className="col-12 titular">
+                            <h2>{idioma.landingPage.favoritos.titulo}</h2>
+                            <Link to={`/favoritos/${authUser.id}`}>
+                                <Boton 
+                                    clase={'botonTodos'}  
+                                    value={idioma.landingPage.favoritos.todos} 
+                                />
+                            </Link>
+                        </div>
                     </div>
-                </div>
-                <div className="juegos row">
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc1}></JuegoMincard>
+                    <div className="juegos row">
+                        {/* Aquí muestro los juegos que llegan del endpoint juegos favoritos, en el componente JuegoMincard */}
+                        {(juegosFavoritosState.buscando) ? 
+                                            <AjaxLoader /> 
+                                            :
+                                            juegosFavoritosState.listaJuegosFavoritos.map((game) => {
+                                                const arrayImagenes = [juegoSrc1, juegoSrc2, juegoSrc3, juegoSrc4, juegoSrc5, juegoSrc6, juegoSrc7, juegoSrc8];
+
+                                            return <div className="col-12 col-sm-6 col-lg-3" key={game.id}>
+                                                        <JuegoMincard 
+                                                            juegoSrc={arrayImagenes[Math.floor(Math.random() * arrayImagenes.length)]} 
+                                                            likes={(!likesGamesState.buscando) ? likesGames[game.id] : ''} 
+                                                            avgRatings={(avgRatings) ? avgRatings[game.id] : ''} 
+                                                            nombreJuego={game.nombreJuego} />
+                                                    </div>
+                                            })
+                        }  
                     </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc2}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc3}></JuegoMincard>
-                    </div>
-                    <div className="col-12 col-sm-6 col-lg-3">
-                        <JuegoMincard juegoSrc={juegoSrc4}></JuegoMincard>
-                    </div>
-                </div>
-            </section>
+                </section>
+                                    : ''}
 
             <section className="ranking col-12">
                 <div className="row">
@@ -127,17 +138,21 @@ const Home = () => {
                     <div className="col-12 titulo text-center">
                         <h3>{idioma.landingPage.listaJuegos.generos}</h3>
                     </div>
-                    <Generos></Generos>
+                    <Generos />
                 </div>
 
                 
                 <div className="row lista">
-                    {(home.buscando) ? <AjaxLoader></AjaxLoader>
+                    {(home.buscando) ? <AjaxLoader />
                                         : games.map((game) => {
                                             const arrayImagenes = [juegoSrc1, juegoSrc2, juegoSrc3, juegoSrc4, juegoSrc5, juegoSrc6, juegoSrc7, juegoSrc8];
 
                                             return  <div className="col-12 col-sm-6 col-lg-3" key={game.id}>
-                                                        <JuegoMincard juegoSrc={arrayImagenes[Math.floor(Math.random() * arrayImagenes.length)]} likes={likesGames[game.id]} avgRatings={avgRatings[game.id]} ></JuegoMincard>
+                                                        <JuegoMincard 
+                                                            juegoSrc={arrayImagenes[Math.floor(Math.random() * arrayImagenes.length)]} 
+                                                            likes={(!likesGamesState.buscando) ? likesGames[game.id] : ''} 
+                                                            avgRatings={(avgRatings) ? avgRatings[game.id] : ''} 
+                                                            nombreJuego={game.nombreJuego} />
                                                     </div>
                                         })                                                  
                     }

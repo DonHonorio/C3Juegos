@@ -3,14 +3,13 @@ import './Boton.css';
 
 const Boton = (props) => {
 
-  function gestionarChange(){
-    console.log("cambiado");
-  
-  }
-
     return (
         <div id='boton' className={props.clase}>
-          <input type="button" onClick={props.buttonFunction} className="" value={props.value}/>
+          <input 
+            type="button" 
+            value={props.value} 
+            onClick={()=>{(props.buttonFunction) ? props.buttonFunction() : null}}
+          />
         </div>
     );
 };

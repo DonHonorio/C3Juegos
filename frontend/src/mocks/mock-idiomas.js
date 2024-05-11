@@ -39,6 +39,26 @@ const idiomas = {
         deportes: "DEPORTES",
         lucha: "LUCHA"
       }
+    },
+    favoritos: {
+      titulo: "Juegos Favoritos",
+    },
+    juego: {
+      showJuego: {
+        jugar: "Jugar",
+        creadoPor: "Creado por",
+        valoraciones: "Valoraciones",
+        opiniones: "Opiniones",
+        publicado: "Publicado el",
+        historia: "HISTORIA",
+        controles: "CONTROLES"
+      },
+      comentarios: {
+        titulo: "Opiniones",
+        añadir: "Añade una opinión...",
+        cancelar: "Cancelar",
+        opinar: "Opinar",
+      }
     }
   },
   "gb": {
@@ -80,6 +100,26 @@ const idiomas = {
         rpg: "RPG",
         deportes: "SPORTS",
         lucha: "FIGHTING"
+      }
+    },
+    favoritos: {
+      titulo: "Favorite Games",
+    },
+    juego: {
+      showJuego: {
+        jugar: "Play",
+        creadoPor: "Created by",
+        valoraciones: "Ratings",
+        opiniones: "Opinions",
+        publicado: "Published on",
+        historia: "HISTORY",
+        controles: "CONTROLS"
+      },
+      comentarios: {
+        titulo: "Opinions",
+        añadir: "Add an opinion...",
+        cancelar: "Cancel",
+        opinar: "Opine",
       }
     }
   }

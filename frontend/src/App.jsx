@@ -40,12 +40,21 @@ function App() {
           } />
           <Route path="/login"         element={<Login />} />
           <Route path="/register"      element={<Register />}/>
-          <Route path="/juego/:id"     element={<Juego />} />   
           <Route path="/acercaDe"      element={<AcercaDe />} />
 
           <Route element={<ProtectedRoutes />} >
-            {/* {NavbarComponent} */}
-            <Route path="/favoritos/:id" element={<Favoritos />} />
+            <Route path="/favoritos/:id" element={
+              <>
+                {NavbarComponent}
+                <Favoritos />
+              </>
+            } />
+            <Route path="/juego/:id"     element={
+              <>
+                {NavbarComponent}
+                <Juego />
+              </>
+            } />   
             <Route path="/perfil/:id"    element={<Perfil />} /> 
           </Route>
         </Routes>

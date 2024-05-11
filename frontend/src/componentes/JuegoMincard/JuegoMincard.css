@@ -6,7 +6,7 @@
   padding: 1em;
 }
 
-#juegoMincard .likes, #juegoMincard .valoracion{
+#juegoMincard .likes, #juegoMincard .valoracion, #juegoMincard .nombreJuego  {
   padding: 0.5em 0.5em;
   
   color: #fff;

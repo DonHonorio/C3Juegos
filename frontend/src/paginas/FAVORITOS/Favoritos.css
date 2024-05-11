@@ -1,0 +1,26 @@
+/***************************
+ * ListaJuegos
+***************************/
+
+#favoritos .listaJuegos {
+  margin-top: 25em !important;
+}
+
+#favoritos .listaJuegos .filtros {
+  background-color: #fff;
+  padding: 10em 0 !important;
+  user-select: none;
+}
+
+#favoritos .listaJuegos .filtros .titulo h3 {
+  color: #181818;
+  font-weight: 600;
+  font-size: 2.25em;
+}
+
+/* lista de juegos */
+
+#favoritos .listaJuegos .lista {
+  padding: 0 3em !important;
+  margin: 5em 0 !important;
+}

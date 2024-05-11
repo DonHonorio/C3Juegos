@@ -4,18 +4,21 @@ import corazonSrc from './../../assets/img/juegos/corazon.svg';
 import estrellaSrc from './../../assets/img/juegos/estrella.svg';  
 
 const JuegoMincard = (props) => {
-  const {juegoSrc, likes, avgRatings} = props;
+  const {juegoSrc, likes, avgRatings, nombreJuego} = props;
 
   function normalizar(valorBruto) {
     valorBruto = Number(valorBruto).toFixed(1);
     return (valorBruto.toString().length === 1 && valorBruto.toString() != 0) ? valorBruto.toString().concat(',0') 
-                                                                        : valorBruto.toString().replace('.', ',');
+                                                                              : valorBruto.toString().replace('.', ',');
   }
 
   return (
       <div id='juegoMincard' className='row'>
         <div className="col-12 portadaJuego text-center">
-          <img src={juegoSrc} alt="juego1" />
+          <img src={juegoSrc} alt="portadaJuego" />
+        </div>
+        <div className="col-12 nombreJuego text-center">
+          <h4>{nombreJuego}</h4>
         </div>
         <div className="col-7 likes text-end">
           <img src={corazonSrc} alt="corazón" />
