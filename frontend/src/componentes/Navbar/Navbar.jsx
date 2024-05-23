@@ -66,7 +66,7 @@ const Navbar = () => {
                             <li className="nav-item botonera botonera_avatar col-5 p-0">
                                 <div className="row">
                                     <div className="col-sm-12 col-lg-6 text-center">
-                                        <Avatar />
+                                        <Avatar nickname={authUser.nickname} />
                                     </div>
                                     <div className="col-sm-12 col-lg-6 text-center">
                                         <Boton 

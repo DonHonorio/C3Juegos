@@ -6,7 +6,7 @@ const Boton = (props) => {
     return (
         <div id='boton' className={props.clase}>
           <input 
-            type="button" 
+            type={(props.type) ? props.type : 'button'}
             value={props.value} 
             onClick={()=>{(props.buttonFunction) ? props.buttonFunction() : null}}
           />

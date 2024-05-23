@@ -24,3 +24,10 @@
   padding: 0 3em !important;
   margin: 5em 0 !important;
 }
+
+
+
+#favoritos .sinFavoritos {
+  color: #fff;
+  margin-top: 10em !important;
+}

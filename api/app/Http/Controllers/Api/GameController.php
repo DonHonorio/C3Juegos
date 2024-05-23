@@ -143,12 +143,12 @@ class GameController extends Controller
 
     public function likesGames()
     {
-        // Devuelve un array con los todos los likes de cada juego (y quien los ha dado)
+        // Devuelve un array con la cantidad de los likes de cada juego
         $games = Game::all();
         $likesGames = [];
         
         foreach ($games as $game) {
-            $likesGames[$game->id] = $game->likes;
+            $likesGames[$game->id] = $game->likes->count();
         }
 
         return response()->json([
@@ -156,6 +156,37 @@ class GameController extends Controller
             'likesGames' => $likesGames
         ]);
 
+    }
+
+    public function checkLikes()
+    {
+        // Muestra que juegos ha dado like el usuario autenticado con un valor booleano
+        $games = Game::all();
+        $user = auth()->user();
+
+        $checkLikes = [];
+
+        foreach ($games as $game) {
+            $checkLikes[$game->id] = $game->checkLike($user);
+        }
+
+        return response()->json([
+            'status' => true,
+            'checkLikes' => $checkLikes
+        ]);
+    }
+
+    public function checkLike($id)
+    {
+        // Comprueba si el usuario autenticado ha dado like a un juego
+        $game = Game::find($id);
+        $user = auth()->user();
+        $checkLike = $game->checkLike($user);
+
+        return response()->json([
+            'status' => true,
+            'checkLike' => $checkLike
+        ]);
     }
 
     public function cantidadLikesGame($id)
@@ -189,19 +220,36 @@ class GameController extends Controller
 
     public function ratingsGame($id)
     {
-        // Devuelve un array con todas las valoraciones de cada juego
-        $games = Game::all();
-        $ratingsGames = [];
+        // Devuelve un array con todas las valoraciones un juego concreto
+        $game = Game::find($id);
+        $ratingsGame = $game->ratings;
 
-        foreach ($games as $game) {
-            if ($game->ratings->isNotEmpty()) {
-                $ratingsGames[$game->id] = $game->ratings;
-            }
+        return response()->json([
+            'status' => true,
+            'ratingsGame' => $ratingsGame
+        ]);
+
+    }
+
+    public function commentsGame($id)
+    {
+        // Devuelve un array con todos los comentarios un juego concreto
+        $game = Game::find($id);
+        $commentsGame = $game->comments;
+
+        foreach ($commentsGame as $comment) {
+            // $comment['user_id'] = $comment->user;
+            $user = $comment->user;
+            // valoracion del usuario en el juego
+            $rating = $user->ratings->where('game_id', $game->id)->first();
+            $user->makeHidden('ratings'); // Ocultamos que muestre todas las valoraciones del usuario
+            $comment['user'] = $user;
+            $comment['rating'] = ($rating) ? $rating->rating : null;
         }
 
         return response()->json([
             'status' => true,
-            'ratingsGames' => $ratingsGames
+            'commentsGame' => $commentsGame
         ]);
 
     }
@@ -221,4 +269,17 @@ class GameController extends Controller
             'commentsGames' => $commentsGames
         ]);
     }
+
+    public function creador($id)
+    {
+        // Devuelve el creador de un juego
+        $game = Game::find($id);
+        $creador = $game->user;
+
+        return response()->json([
+            'status' => true,
+            'creador' => $creador
+        ]);
+    }
+
 }

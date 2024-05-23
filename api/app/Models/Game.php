@@ -29,6 +29,11 @@ class Game extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function checkLike(User $user)
+    {
+        return $this->likes()->where('user_id', $user->id)->exists();
+    }
+
     public function ratings()
     {
         return $this->hasMany(Rating::class);

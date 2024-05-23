@@ -23,7 +23,7 @@ const Login = () => {
     await csrf();
 
     const form = {email: email, password:password};
-    const respuesta = await sendRequest('POST', form, '/api/login','', false);
+    const respuesta = await sendRequest('POST', form, '/api/login','',true, false);
     if(respuesta.status == true){
       storage.set('authToken', respuesta.token);
       storage.set('authUser', JSON.stringify(respuesta.user));

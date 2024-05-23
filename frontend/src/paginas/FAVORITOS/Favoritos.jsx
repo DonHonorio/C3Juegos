@@ -6,6 +6,7 @@ import IdiomaContext from '../../contextos/IdiomaContext';
 import useLikesGames from '../../hooks/useLikesGames';
 import useAvgRatings from '../../hooks/useAvgRatings';
 import useJuegosFavoritos from '../../hooks/useJuegosFavoritos';
+import LikesContext from '../../contextos/LikesContext';
 
 import AjaxLoader from '../../componentes/AjaxLoader/AjaxLoader';
 import Generos from '../../componentes/Generos/Generos';
@@ -21,16 +22,13 @@ import juegoSrc8 from './../../assets/img/juegos/FotoJuego8.svg';
 
 
 const Favoritos = () => {
-    // inicializo los hooks
+    // inicializo los hooks y variables
     const idioma = useContext(IdiomaContext);
+    const { actualizarFavoritos } = useContext(LikesContext);
 
-    const likesGamesState = useLikesGames();
-    const avgRatingsState = useAvgRatings();
-    const juegosFavoritosState = useJuegosFavoritos('todos');
-
-    // inicializo las variables
-    const likesGames = (likesGamesState.listaLikesGames) ? likesGamesState.listaLikesGames : [];
-    const avgRatings = (avgRatingsState.listaAvgRatings) ? avgRatingsState.listaAvgRatings : [];
+    const likesGames = useLikesGames();
+    const avgRatings = useAvgRatings();
+    const juegosFavoritos = useJuegosFavoritos('todos', actualizarFavoritos);
 
     return (
       <div id="favoritos">
@@ -50,20 +48,25 @@ const Favoritos = () => {
 
             
             <div className="row lista">
-                {(juegosFavoritosState.buscando) ? 
-                                              <AjaxLoader /> 
-                                              :
-                                              juegosFavoritosState.listaJuegosFavoritos.map((game) => {
-                                                  const arrayImagenes = [juegoSrc1, juegoSrc2, juegoSrc3, juegoSrc4, juegoSrc5, juegoSrc6, juegoSrc7, juegoSrc8];
+                {(!juegosFavoritos) ? 
+                                            <AjaxLoader /> 
+                                            :
+                                            (juegosFavoritos.length > 0) ?
+                                                juegosFavoritos.map((game, index) => {
+                                                    const arrayImagenes = [juegoSrc1, juegoSrc2, juegoSrc3, juegoSrc4, juegoSrc5, juegoSrc6, juegoSrc7, juegoSrc8];
 
-                                              return <div className="col-12 col-sm-6 col-lg-3" key={game.id}>
-                                                          <JuegoMincard 
-                                                              juegoSrc={arrayImagenes[Math.floor(Math.random() * arrayImagenes.length)]} 
-                                                              likes={(!likesGamesState.buscando) ? likesGames[game.id] : ''} 
-                                                              avgRatings={(!avgRatingsState.buscando) ? avgRatings[game.id] : ''} 
-                                                              nombreJuego={game.nombreJuego} />
-                                                      </div>
-                                              })                                                
+                                                return <div className="col-12 col-sm-6 col-lg-3" key={game.id}>
+                                                            <JuegoMincard 
+                                                                    id={game.id}
+                                                                    juegoSrc={arrayImagenes[index % arrayImagenes.length]} 
+                                                                    avgRatings={(avgRatings) ? avgRatings[game.id] : ''} 
+                                                                    nombreJuego={game.nombreJuego} />
+                                                        </div>
+                                                })                                                
+                                                :
+                                                <div className="col-12 text-center sinFavoritos">
+                                                    <h1>{idioma.landingPage.favoritos.sinFavoritos}</h1>
+                                                </div>
                 }
             </div>
         </section>

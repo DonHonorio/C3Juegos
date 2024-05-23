@@ -4,13 +4,13 @@ import sendRequest from '../servicios/functions';
 const useAvgRatings = () => {
     
   // Estado con la lista de likes de juegos que recuperamos de la REST API
-  const [listaAvgRatings, setListaAvgRatings] = useState();
+  const [avgRatings, setAvgRatings] = useState();
 
   async function fetchData(){
-    let resultado = await sendRequest('GET', null, '/api/games/avgRatings', '', false);
+    let resultado = await sendRequest('GET', null, '/api/games/avgRatings', '',false, false);
 
     //Cargamos la media de valoraciones en el estado del componente
-    setListaAvgRatings(resultado.avgRatings);
+    setAvgRatings(resultado.avgRatings);
   }
 
   // Llamamos a la función de extracción de datos con un useEffect para que solo se ejecute una vez
@@ -20,7 +20,7 @@ const useAvgRatings = () => {
     fetchData();
   }, []);
 
-  return listaAvgRatings;
+  return avgRatings;
 
 }
 

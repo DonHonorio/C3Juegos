@@ -7,7 +7,7 @@ const useCantidadLikesGame = (id) => {
   const [cantidadLikes, setCantidadLikes] = useState();
 
   async function fetchData(){
-    let resultado = await sendRequest('GET', null, `/api/games/cantidadLikesGame/${id}`, '', false);
+    let resultado = await sendRequest('GET', null, `/api/games/cantidadLikesGame/${id}`, '',false, false);
 
     //Cargamos el juego por id en el estado del componente
     setCantidadLikes(resultado.cantidadLikes);
@@ -20,7 +20,7 @@ const useCantidadLikesGame = (id) => {
     fetchData();
   }, []);
 
-  return cantidadLikes;
+  return {cantidadLikes, setCantidadLikes};
 
 }
 

@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('game_id')->constrained()->onDelete('cascade');
-            $table->integer('rating');
+            $table->decimal('rating', 2, 1);
             $table->timestamps();
+
+            // Un usuario no puede calificar más de una vez a un mismo juego pero si puede cambiarla
+            $table->unique(['user_id', 'game_id']);
         });
     }
 

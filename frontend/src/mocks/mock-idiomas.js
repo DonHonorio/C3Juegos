@@ -15,6 +15,7 @@ const idiomas = {
       },
       favoritos: {
         titulo: "Tus Juegos Favoritos",
+        sinFavoritos: "No tienes juegos favoritos aún.",
         todos: "TODOS"
       },
       ranking: {
@@ -46,8 +47,9 @@ const idiomas = {
     juego: {
       showJuego: {
         jugar: "Jugar",
-        creadoPor: "Creado por",
+        creadoPor: "Creador por:",
         valoraciones: "Valoraciones",
+        opinion: "Opinión",
         opiniones: "Opiniones",
         publicado: "Publicado el",
         historia: "HISTORIA",
@@ -77,6 +79,7 @@ const idiomas = {
       },
       favoritos: {
         titulo: "Your Favorite Games",
+        sinFavoritos: "You don't have any favorite games yet.",
         todos: "ALL"
       },
       ranking: {
@@ -108,8 +111,9 @@ const idiomas = {
     juego: {
       showJuego: {
         jugar: "Play",
-        creadoPor: "Created by",
+        creadoPor: "Created by:",
         valoraciones: "Ratings",
+        opinion: "Opinion",
         opiniones: "Opinions",
         publicado: "Published on",
         historia: "HISTORY",

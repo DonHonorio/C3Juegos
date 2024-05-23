@@ -5,7 +5,7 @@ export const show_alerta = (msj, icon) => {
   Swal.fire({ title:msj, icon:icon, buttonsStyling:true });
 }
 
-export const sendRequest = async(method, params, url, redir='', token=true) => {
+export const sendRequest = async(method, params, url, redir='',alerta=false, token=true) => {
   if(token){
     const authToken = storage.get('authToken');
     axios.defaults.headers.common['Authorization'] = 'Bearer '+authToken;
@@ -16,12 +16,13 @@ export const sendRequest = async(method, params, url, redir='', token=true) => {
     response => {
 
       res = response.data,
-      (method != 'GET') ? show_alerta(response.data.message, 'success'):'',
+      (alerta) ? show_alerta(response.data.message, 'success'):'',
       setTimeout( () =>
         (redir !== '') ? window.location.href = redir : '', 2000)
     }).catch( (errors) => {
       let desc='';
       res = errors.response.data,
+      // console.log(errors.response.data.errors),
       errors.response.data.errors.map( (e) => {desc = desc + ' \n'+e} )
       show_alerta(desc, 'error');
     })
@@ -40,6 +41,20 @@ export const confirmation = async(name, url, redir) => {
       sendRequest('DELETE',{},url, redir);
     }
   });
+}
+
+export function normalizarValoracionJuego(valorBruto) {
+  valorBruto = Number(valorBruto).toFixed(1);
+  return (valorBruto.toString().length === 1 && valorBruto.toString() != 0) ? valorBruto.toString().concat(',0') 
+                                                                            : valorBruto.toString().replace('.', ',');
+}
+
+export function normalizarFormatoFecha(valorBruto) {
+  let fecha = new Date(valorBruto);
+  let dia = String(fecha.getDate()).padStart(2, '0');
+  let mes = String(fecha.getMonth() + 1).padStart(2, '0');
+  let anio = fecha.getFullYear();
+  return dia+'/'+mes+'/'+anio;
 }
 
 export default sendRequest;

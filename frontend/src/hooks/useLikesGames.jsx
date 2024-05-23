@@ -4,13 +4,13 @@ import sendRequest from '../servicios/functions';
 const useLikesGames = () => {
     
   // Estado con la lista de likes de juegos que recuperamos de la REST API
-  const [listaLikesGames, setListaLikesGames] = useState();
+  const [likesGames, setLikesGames] = useState();
 
   async function fetchData(){
-    let resultado = await sendRequest('GET', null, '/api/games/likesGames', '', false);
+    let resultado = await sendRequest('GET', null, '/api/games/likesGames', '',false, false);
 
     //Cargamos los games en el estado del componente
-    setListaLikesGames(resultado.likesGames);
+    setLikesGames(resultado.likesGames);
   }
 
   // Llamamos a la función de extracción de datos con un useEffect para que solo se ejecute una vez
@@ -19,7 +19,7 @@ const useLikesGames = () => {
     fetchData();
   }, []);
 
-  return listaLikesGames;
+  return {likesGames, setLikesGames};
 
 }
 

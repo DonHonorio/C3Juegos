@@ -23,7 +23,7 @@ const Register = () => {
     await csrf();
 
     const form = {nickname: nickname, email: email, password:password};
-    const respuesta = await sendRequest('POST', form, '/api/register','', false);
+    const respuesta = await sendRequest('POST', form, '/api/register','',true, false);
 
     if(respuesta.status == true){
       storage.set('authToken', respuesta.token);

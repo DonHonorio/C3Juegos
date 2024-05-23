@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
+import LikesProvider from './providers/LikesProvider';
 import IdiomaContext from './contextos/IdiomaContext';
 import useIdiomas from './hooks/useIdiomas';
 import losIdiomas from './mocks/mock-idiomas';
@@ -35,7 +36,9 @@ function App() {
           <Route path="/"              element={
             <>
               {NavbarComponent}
-              <Home />
+              <LikesProvider>
+                <Home />
+              </LikesProvider>
             </>
           } />
           <Route path="/login"         element={<Login />} />
@@ -46,10 +49,12 @@ function App() {
             <Route path="/favoritos/:id" element={
               <>
                 {NavbarComponent}
-                <Favoritos />
+                <LikesProvider>
+                  <Favoritos />
+                </LikesProvider>
               </>
             } />
-            <Route path="/juego/:id"     element={
+            <Route path="/juego/:idJuego"     element={
               <>
                 {NavbarComponent}
                 <Juego />

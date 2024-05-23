@@ -7,7 +7,7 @@ const useGame = (id) => {
   const [game, setGame] = useState();
 
   async function fetchData(){
-    let resultado = await sendRequest('GET', null, `/api/game/${id}`, '', false);
+    let resultado = await sendRequest('GET', null, `/api/game/${id}`, '',false, false);
 
     //Cargamos el juego por id en el estado del componente
     setGame(resultado.game);
