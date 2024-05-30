@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import LikesProvider from './providers/LikesProvider';
+import StoreProvider from './providers/Store';
 import IdiomaContext from './contextos/IdiomaContext';
 import useIdiomas from './hooks/useIdiomas';
 import losIdiomas from './mocks/mock-idiomas';
@@ -31,39 +31,39 @@ function App() {
   return (
     <div className='container-fluid'>
       {/* Aquí enviamos el idioma seleccionado */}
-      <IdiomaContext.Provider value={losIdiomas[idiomas.idiomaElegido]}>
-        <Routes>
-          <Route path="/"              element={
-            <>
-              {NavbarComponent}
-              <LikesProvider>
-                <Home />
-              </LikesProvider>
-            </>
-          } />
-          <Route path="/login"         element={<Login />} />
-          <Route path="/register"      element={<Register />}/>
-          <Route path="/acercaDe"      element={<AcercaDe />} />
-
-          <Route element={<ProtectedRoutes />} >
-            <Route path="/favoritos/:id" element={
+      <StoreProvider>
+        <IdiomaContext.Provider value={losIdiomas[idiomas.idiomaElegido]}>
+          {NavbarComponent}
+          <Routes>
+            <Route path="/"              element={
               <>
-                {NavbarComponent}
-                <LikesProvider>
-                  <Favoritos />
-                </LikesProvider>
+                <Home />
               </>
             } />
-            <Route path="/juego/:idJuego"     element={
-              <>
-                {NavbarComponent}
-                <Juego />
-              </>
-            } />   
-            <Route path="/perfil/:id"    element={<Perfil />} /> 
-          </Route>
-        </Routes>
-      </IdiomaContext.Provider>
+            <Route path="/login"         element={<Login />} />
+            <Route path="/register"      element={<Register />}/>
+            <Route path="/acercaDe"      element={<AcercaDe />} />
+
+            <Route element={<ProtectedRoutes />} >
+              <Route path="/favoritos/:id" element={
+                <>
+                  <Favoritos />
+                </>
+              } />
+              <Route path="/juego/:idJuego"     element={
+                <>
+                  <Juego />
+                </>
+              } />   
+              <Route path="/perfil/:id"    element={
+                <>
+                  <Perfil />
+                </>
+              } /> 
+            </Route>
+          </Routes>
+        </IdiomaContext.Provider>
+      </StoreProvider>
     </div>
   );
 }

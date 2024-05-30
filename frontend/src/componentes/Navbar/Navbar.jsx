@@ -34,7 +34,7 @@ const Navbar = () => {
         navegar('/');
     }
 
-    console.log('STORE GET', authUser);
+    // console.log('STORE GET', authUser);
 
     return (        
         //he usado un navbar de boostrap, que es responsive, y he añadido un botón para cambiar de idioma
@@ -66,7 +66,7 @@ const Navbar = () => {
                             <li className="nav-item botonera botonera_avatar col-5 p-0">
                                 <div className="row">
                                     <div className="col-sm-12 col-lg-6 text-center">
-                                        <Avatar nickname={authUser.nickname} />
+                                        <Avatar nickname={authUser.nickname} id={authUser.id} />
                                     </div>
                                     <div className="col-sm-12 col-lg-6 text-center">
                                         <Boton 

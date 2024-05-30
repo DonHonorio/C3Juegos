@@ -1,0 +1,26 @@
+#perfilForm {
+  margin-bottom: 10em !important;
+}
+
+#perfilForm .campos {
+  background-color: #fff;
+}
+
+#perfilForm .error {
+  padding: 0;
+  margin: 0;
+
+  text-align: center;
+  color: #ee8686;
+}
+
+#perfilForm .botonera {
+  margin-top: 3em !important;
+}
+#perfilForm .botonCancelar {
+  width: max-content;
+}
+
+#perfilForm .botonGuardar {
+  width: max-content;
+}

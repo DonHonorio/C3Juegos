@@ -61,6 +61,28 @@ const idiomas = {
         cancelar: "Cancelar",
         opinar: "Opinar",
       }
+    },
+    perfil: {
+      titulo: "Perfil",
+      creadoEl: "Creado el ",
+      subirFoto: {
+        boton: "Subir Nueva Foto",
+        tituloVentana: "Elige una foto de perfil",
+      },
+      borrarCuenta: "Borrar Cuenta",
+      confirmarBorrarCuenta: "¿Estás seguro de que quieres borrar tu cuenta?",
+      nombre: "Nombre",
+      apellidos: "Apellidos",
+      nickname: "NickName",
+      modulo: "Módulo",
+      direccionDeCorreo: "Dirección de Correo",
+      passwordActual: "Contraseña Actual",
+      passwordNueva: "Nueva Contraseña",
+      passwordConfirmar: "Confirmar Nueva Contraseña",
+      botonera: {
+        cancelar: "Cancelar",
+        guardar: "Guardar Cambios"
+      }
     }
   },
   "gb": {
@@ -124,6 +146,28 @@ const idiomas = {
         añadir: "Add an opinion...",
         cancelar: "Cancel",
         opinar: "Opine",
+      }
+    },
+    perfil: {
+      titulo: "Profile",
+      creadoEl: "Created on ",
+      subirFoto: {
+        boton: "Upload New Photo",
+        tituloVentana: "Choose a profile picture",
+      },
+      borrarCuenta: "Delete Account",
+      confirmarBorrarCuenta: "Are you sure you want to delete your account?",
+      nombre: "Name",
+      apellidos: "Last Name",
+      nickname: "NickName",
+      modulo: "Module",
+      direccionDeCorreo: "Email Address",
+      passwordActual: "Current Password",
+      passwordNueva: "New Password",
+      passwordConfirmar: "Confirm New Password",
+      botonera: {
+        cancelar: "Cancel",
+        guardar: "Save Changes"
       }
     }
   }

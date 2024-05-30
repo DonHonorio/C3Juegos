@@ -6,6 +6,7 @@ import IdiomaContext from '../../contextos/IdiomaContext';
 import useCommentsGame from '../../hooks/useCommentsGame';
 import { normalizarFormatoFecha } from '../../servicios/functions';
 
+import LineaDivisoria from '../../componentes/LineaDivisoria/LineaDivisoria';
 import DetallesJuego from '../../componentes/DetallesJuego/DetallesJuego';
 import AjaxLoader from '../../componentes/AjaxLoader/AjaxLoader';
 import Comentario from '../../componentes/Comentario/Comentario';
@@ -35,11 +36,7 @@ const Juego = () => {
 
             <ComentarioForm idJuego={idJuego} setRenderComentarios={setRenderComentarios} />
 
-            <div className="linea_divisioria text-center">
-              <svg width="100%" height="2" viewBox="0 0 1200 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line y1="1" x2="1200" y2="1" stroke="white" strokeWidth="2"/>
-              </svg>
-            </div>
+            <LineaDivisoria />
 
             <section className="col-12 cajaComentarios">
 

@@ -16,6 +16,7 @@ import sendRequest, { normalizarValoracionJuego } from '../../servicios/function
 import juegoRankingSrc1 from './../../assets/img/juegos/ranking/FotoJuegoRanking1.svg';
 import estrellaSrc from './../../assets/img/juegos/estrella.svg';  
 import Boton from '../Boton/Boton';
+import Link from 'antd/es/typography/Link';
 
 const DetallesJuego = (props) => {
   // inicializo los hooks y variables
@@ -30,8 +31,6 @@ const DetallesJuego = (props) => {
   const avgRatings = useAvgRatings();
   const creador = useCreador(props.idJuego);
   const ratingsGame = useRatingsGame(props.idJuego);
-
-  console.log('like', like);
 
   const handleLike = async() => {
     setLike(!like)
@@ -65,10 +64,12 @@ const DetallesJuego = (props) => {
                       <img src={juegoRankingSrc1} alt="portadaJuego" />
                     </div>
                     <div className="col-12 botonJugar">
+                    <a href="http://127.0.0.1:8000/juego/5" target='_blank'>
                       <Boton
                         clase="jugar"
                         value={idioma.juego.showJuego.jugar}
                       />
+                    </a>
                     </div>
                     <div className="col-7 likes text-end">
                       <button onClick={handleLike} style={{ color: 'transparent', background: 'transparent', border: 'none' }}>

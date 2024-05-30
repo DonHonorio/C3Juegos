@@ -6,7 +6,7 @@ import IdiomaContext from '../../contextos/IdiomaContext';
 import useLikesGames from '../../hooks/useLikesGames';
 import useAvgRatings from '../../hooks/useAvgRatings';
 import useJuegosFavoritos from '../../hooks/useJuegosFavoritos';
-import LikesContext from '../../contextos/LikesContext';
+import StoreContext from '../../contextos/StoreContext';
 
 import AjaxLoader from '../../componentes/AjaxLoader/AjaxLoader';
 import Generos from '../../componentes/Generos/Generos';
@@ -24,9 +24,8 @@ import juegoSrc8 from './../../assets/img/juegos/FotoJuego8.svg';
 const Favoritos = () => {
     // inicializo los hooks y variables
     const idioma = useContext(IdiomaContext);
-    const { actualizarFavoritos } = useContext(LikesContext);
+    const { actualizarFavoritos } = useContext(StoreContext);
 
-    const likesGames = useLikesGames();
     const avgRatings = useAvgRatings();
     const juegosFavoritos = useJuegosFavoritos('todos', actualizarFavoritos);
 

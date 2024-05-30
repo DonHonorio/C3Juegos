@@ -2,14 +2,13 @@ import React, { useContext, useState, useEffect } from 'react';
 import { HeartFilled } from '@ant-design/icons';
 import "./JuegoMincard.css";
 
-import LikesContext from '../../contextos/LikesContext';
+import StoreContext from '../../contextos/StoreContext';
 import { sendRequest, normalizarValoracionJuego } from '../../servicios/functions';
-import useCheckLike from '../../hooks/useCheckLike';
 
 import estrellaSrc from './../../assets/img/juegos/estrella.svg';  
 
 const JuegoMincard = (props) => {
-  const { setAcutalizarFavoritos, cantidadLikes, setCantidadLikes, likes, setLikes  } = useContext(LikesContext);
+  const { setAcutalizarFavoritos, cantidadLikes, setCantidadLikes, likes, setLikes  } = useContext(StoreContext);
   const {id, juegoSrc, avgRatings, nombreJuego} = props;
 
   const handleLike = async() => {

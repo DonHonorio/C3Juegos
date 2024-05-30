@@ -22,6 +22,10 @@ class GameController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nombreJuego' => 'required|string|max:60|min:2|unique:games',
+            'genero' => 'required|in:ESTRATEGIA,SHOOT´EM UP,SHOOTER,PLATAFORMAS,RPG,DEPORTES,LUCHA',
+            'historia' => 'string',
+            'controles' => 'string',
+            'portada' => 'string|max:100',
         ]);
 
         if($validator->fails()){
@@ -60,6 +64,10 @@ class GameController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nombreJuego' => 'required|string|max:60|min:2|unique:games',
+            'genero' => 'required|in:ESTRATEGIA,SHOOT´EM UP,SHOOTER,PLATAFORMAS,RPG,DEPORTES,LUCHA',
+            'historia' => 'string',
+            'controles' => 'string',
+            'portada' => 'string|max:100',
         ]);
         if($validator->fails()){
             return response()->json([

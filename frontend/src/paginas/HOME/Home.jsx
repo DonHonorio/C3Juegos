@@ -9,7 +9,7 @@ import useAvgRatings from '../../hooks/useAvgRatings';
 import storage from '../../Storage/storage';
 import useJuegosFavoritos from '../../hooks/useJuegosFavoritos';
 import IdiomaContext from '../../contextos/IdiomaContext';
-import LikesContext from '../../contextos/LikesContext';
+import StoreContext from '../../contextos/StoreContext';
 
 import Boton from '../../componentes/Boton/Boton';
 import JuegoMincard from '../../componentes/JuegoMincard/JuegoMincard';
@@ -34,7 +34,7 @@ import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 const Home = () => {
     // inicializo los hooks
     const idioma = useContext(IdiomaContext);
-    const { actualizarFavoritos } = useContext(LikesContext);
+    const { actualizarFavoritos } = useContext(StoreContext);
     const home = useHome();
     // const {likesGames, setLikesGames} = useLikesGames();
     const avgRatings = useAvgRatings();
@@ -46,7 +46,6 @@ const Home = () => {
     const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
 
     // (home) ? console.log(home.listaHome) : '';
-    // console.log('ACTUALIZACIONES: ', actualizarFavoritos);
     
     return (
         <main className="row" id="home">

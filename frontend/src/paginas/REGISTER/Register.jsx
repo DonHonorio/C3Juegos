@@ -4,7 +4,6 @@ import sendRequest from '../../servicios/functions';
 import storage from '../../Storage/storage';
 
 import DivInput from '../../componentes/DivInput/DivInput';
-import Modal from '../../componentes/Modal';
 
 const Register = () => {
 
@@ -31,10 +30,6 @@ const Register = () => {
       navegar('/');
     }
   }
-
-  // const openModal = () => {
-  //   NO es obligatoria esta función (aquí puedes hacer otras cosas)
-  // }
 
   return (
     <>
@@ -71,24 +66,8 @@ const Register = () => {
               </div>
             </div>
 
-            {/* <button className='btn btn-dark' data-bs-toggle='modal'
-              data-bs-target='#miModal' onClick={() => openModal()}> //No es obligatorio la funcion openModal para abir el modal
-              <i className="fa-solid fa-circle-plus"></i> Add
-            </button> */}
-
           </div>
 
-          {/* <Modal title='Mi primer modal' modal='miModal'>
-            <div className="modal-body">
-              <div className='col-md-6 offset-md-3'>
-                <h1>Mi primer modal funciona bien</h1>
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button className="btn btn-dark" data-bs-dismiss='modal'
-              ref={close}>Close</button>
-            </div>
-          </Modal> */}
         </div>
       </div>
     </div>

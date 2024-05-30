@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GameController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LikeController;
+use App\Http\Controllers\Api\UserController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -28,6 +29,8 @@ Route::controller(GameController::class)->group(function () {
     Route::get('/games/avgRatings', 'avgRatings');
 });
 
+Route::get('/user/fotoPerfil/{id}', [UserController::class, 'fotoPefil']);
+
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
@@ -36,6 +39,13 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/logout', [AuthController::class, 'logout']);
+
+    Route::controller(UserController::class)->group(function () {
+        Route::post('/uploadFotoPerfil', 'uploadFotoPerfil');
+        Route::delete('/user/deleteFotoPerfil/{id}', 'deleteFotoPerfil');
+        Route::put('/user/{id}', 'update');
+        Route::delete('/user/{id}', 'destroy');
+    });
     
     Route::controller(GameController::class)->group(function () {
         Route::post('/game', 'store');

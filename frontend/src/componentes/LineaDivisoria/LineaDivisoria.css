@@ -1,0 +1,7 @@
+.linea_divisioria {
+  padding: 0;
+}
+
+#showGame .linea_divisioria {
+  padding: 0 15%;
+}

@@ -14,9 +14,12 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nickname' => 'required|string|max:255|min:2|unique:users',
-            'password' => 'required|string|min:8',
-            'email' => 'required|string|email|max:255|unique:users'
+            'nickname' => 'required|string|max:25|min:2|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'string|max:60|min:2',
+            'apellidos' => 'string|max:60|min:2',
+            'modulo' => 'string|max:100|min:2',
         ]);
 
         if($validator->fails()){
@@ -50,8 +53,6 @@ class AuthController extends Controller
         if (!Auth::attempt($request->only('email', 'password')))
         {
             return response()->json([
-                // 'Valor de password: '. $request->password,
-                // 'Valor de email: '. $request->email,
                 'status' => false,
                 'message' => 'Unauthorized',
                 'errors' => ['Credenciales Incorrectas']
@@ -77,8 +78,6 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return response()->json([
-            // 'Valor método tokens(): ',
-            // auth()->user()->tokens(),
             'status' => true,
             'message' => 'Sesión Cerrada Correctamente'
         ], 204); // 204 -> "No Content"

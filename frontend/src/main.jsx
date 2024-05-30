@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 // import '@fortawesome/fontawesome-free/css/all.min.css'
 import axios from 'axios'
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 window.axios = axios
-
-window.axios.defaults.baseURL = 'http://localhost:8000'
+window.axios.defaults.baseURL = API_URL;
 window.axios.defaults.headers.common['Accept'] = 'application/json'
 window.axios.defaults.headers.common['Content-Type'] = 'application/json'
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'

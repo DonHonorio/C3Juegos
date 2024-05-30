@@ -1,18 +1,22 @@
 import React,{ useContext } from 'react';
-import avatarSrc from './../../assets/img/avatar.svg';
+import StoreContext from '../../contextos/StoreContext';
+import { UserOutlined } from '@ant-design/icons';
 import './Avatar.css';
 
 import {Link } from 'react-router-dom';
+import storage from '../../Storage/storage';
 
-const Avatar = ({nickname}) => {
+const Avatar = ({nickname, id }) => {
+  const { avatarUser } = useContext(StoreContext);
 
-    return (
-        <div id='avatar' >
-            <Link className='linkAvatar' to="/perfil/1" >
-              <p>{nickname}</p>
-              <img src={avatarSrc} alt="avatar" id='imagenAvatar' />
-            </Link>
-        </div>
-    );
+  return (
+      <div id='avatar' >
+          <Link className='linkAvatar' to={`/perfil/${id}`} >
+            <p>{nickname}</p>
+            {storage.get('authUser').fotoPerfil ? <img src={avatarUser} alt="avatar" id='imagenAvatar' /> 
+                                                : <UserOutlined style={{ fontSize: '2em' }} /> }
+          </Link>
+      </div>
+  );
 };
 export default Avatar;
