@@ -46,6 +46,7 @@ const Home = () => {
     const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
 
     // (home) ? console.log(home.listaHome) : '';
+    // (juegosFavoritos) ? console.log(juegosFavoritos) : '';
     
     return (
         <main className="row" id="home">
@@ -83,7 +84,7 @@ const Home = () => {
                                                                 id={game.id}
                                                                 juegoSrc={arrayImagenes[index % arrayImagenes.length]} 
                                                                 avgRatings={(avgRatings) ? avgRatings[game.id] : ''} 
-                                                                nombreJuego={game.nombreJuego} />
+                                                                nombreJuego={game.nombreJuego}/>
                                                         </div>
                                                 })
                                                 :
@@ -160,7 +161,7 @@ const Home = () => {
                                                             id={game.id}
                                                             juegoSrc={arrayImagenes[index % arrayImagenes.length]} 
                                                             avgRatings={(avgRatings) ? avgRatings[game.id] : ''} 
-                                                            nombreJuego={game.nombreJuego} />
+                                                            nombreJuego={game.nombreJuego}/>
                                                     </div>
                                         })                                                  
                     }

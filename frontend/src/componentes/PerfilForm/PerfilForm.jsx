@@ -1,7 +1,6 @@
 import React,{ useState, useContext, useEffect } from 'react'
 import { UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import sendRequest from '../../servicios/functions';
-import storage from '../../Storage/storage';
 import { Input } from 'antd';
 
 import IdiomaContext from '../../contextos/IdiomaContext';

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Helpers\ErrorHelper;
 
 class UserController extends Controller
 {
@@ -28,7 +29,7 @@ class UserController extends Controller
         if(!request()->hasFile('fotoPerfil')){
             return response()->json([
                 'status' => false,
-                'errors' => $this->devolverError('fotoPerfil', 'No se ha subido ningún archivo')
+                'errors' => ErrorHelper::devolverError('fotoPerfil', 'No se ha subido ningún archivo')
             ], 200);
         }
 
@@ -116,7 +117,7 @@ class UserController extends Controller
             if (!Hash::check($request->old_password, auth()->user()->getAuthPassword())) {
                 return response()->json([
                     'status' => false,
-                    'errors' => $this->devolverError('old_password', 'La contraseña actual no coincide')
+                    'errors' => ErrorHelper::devolverError('old_password', 'La contraseña actual no coincide')
                 ], 200);
             }
 
@@ -136,7 +137,7 @@ class UserController extends Controller
             if ($request->old_password == $request->password) {
                 return response()->json([
                     'status' => false,
-                    'errors' => $this->devolverError('password', 'La nueva contraseña no puede ser igual a la anterior')
+                    'errors' => ErrorHelper::devolverError('password', 'La nueva contraseña no puede ser igual a la anterior')
                 ], 200);
             }
 

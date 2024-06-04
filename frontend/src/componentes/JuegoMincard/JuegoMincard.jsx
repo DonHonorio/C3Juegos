@@ -1,5 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { HeartFilled } from '@ant-design/icons';
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 import "./JuegoMincard.css";
 
 import StoreContext from '../../contextos/StoreContext';
@@ -9,7 +11,7 @@ import estrellaSrc from './../../assets/img/juegos/estrella.svg';
 
 const JuegoMincard = (props) => {
   const { setAcutalizarFavoritos, cantidadLikes, setCantidadLikes, likes, setLikes  } = useContext(StoreContext);
-  const {id, juegoSrc, avgRatings, nombreJuego} = props;
+  const {id, juegoSrc, avgRatings, nombreJuego, creadorId} = props;
 
   const handleLike = async() => {
     setLikes({...likes, [id]: !likes[id]});
@@ -28,12 +30,16 @@ const JuegoMincard = (props) => {
 
   return (
       <div id='juegoMincard' className='row'>
-        <div className="col-12 portadaJuego text-center">
-          <img src={juegoSrc} alt="portadaJuego" />
-        </div>
-        <div className="col-12 nombreJuego text-center">
-          <h4>{nombreJuego}</h4>
-        </div>
+        <Link to={`/juego/${id}`}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+          <div className="col-12 portadaJuego text-center">
+            <img src={juegoSrc} alt="portadaJuego" />
+          </div>
+          <div className="col-12 nombreJuego text-center">
+            <h4>{nombreJuego}</h4>
+          </div>
+        </Link>
         <div className="col-7 likes text-end">
           <button onClick={handleLike} style={{ color: 'transparent', background: 'transparent', border: 'none' }}>
             <HeartFilled style={likes ? likes[id] ? { color: '#f00' } 

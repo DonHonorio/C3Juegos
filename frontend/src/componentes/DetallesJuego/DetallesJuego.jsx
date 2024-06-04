@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react'
 import { HeartFilled } from '@ant-design/icons';
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 import './DetallesJuego.css';
 
 import IdiomaContext from '../../contextos/IdiomaContext';
@@ -25,6 +26,7 @@ const DetallesJuego = (props) => {
   // estado para el like que además es un custom hook que comprueba si el usuario ha dado like al juego en la BBDD
   const {like, setLike} = useCheckLike(props.idJuego);
   
+  // juego actual
   const game = useGame(props.idJuego);
   const {cantidadLikes, setCantidadLikes} = useCantidadLikesGame(props.idJuego);
   // AvgRatings es la media valoraciones de todos los juegos, necesitamos la de este juego
@@ -64,7 +66,7 @@ const DetallesJuego = (props) => {
                       <img src={juegoRankingSrc1} alt="portadaJuego" />
                     </div>
                     <div className="col-12 botonJugar">
-                    <a href="http://127.0.0.1:8000/juego/5" target='_blank'>
+                    <a href={`${API_URL}/api/jugar/${game.user_id}/${game.nombreJuego}`} target='_blank'>
                       <Boton
                         clase="jugar"
                         value={idioma.juego.showJuego.jugar}

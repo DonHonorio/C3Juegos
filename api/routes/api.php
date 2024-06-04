@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\GameController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LikeController;
 use App\Http\Controllers\Api\UserController;
+use Illuminate\Support\Facades\Response;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -16,6 +17,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/home', HomeController::class)->name('home');
+
+
+Route::get('/jugar/{id_user}/{nombre}', function ($id_user, $id_juego) {
+    $files = glob(public_path("juegos/{$id_user}/{$id_juego}/*.html"));
+
+    if (!empty($files)) {
+        foreach ($files as $file) {
+            if (pathinfo($file, PATHINFO_EXTENSION) === 'html') {
+                return Response::file($file);
+            }
+        }
+    } else {
+        // mostramos la vista de juego no encontrado
+        return view('juegoNotFound');
+    }
+
+});
 
 Route::controller(GameController::class)->group(function () {
     Route::get('/games', 'index');

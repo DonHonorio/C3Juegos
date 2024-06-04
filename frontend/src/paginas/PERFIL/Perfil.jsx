@@ -8,6 +8,7 @@ import PerfilForm from '../../componentes/PerfilForm/PerfilForm';
 import PerfilCard from '../../componentes/PerfilCard/PerfilCard';
 import SubirFotoButton from '../../componentes/SubirFotoButton/SubirFotoButton';
 import BorrarCuentaButton from '../../componentes/BorrarCuentaButton/BorrarCuentaButton';
+import SubirVideojuegoButton from '../../componentes/SubirVideojuegoButton/SubirVideojuegoButton';
 
 const Perfil = () => {
     const idioma = useContext(IdiomaContext);
@@ -32,6 +33,7 @@ const Perfil = () => {
           <div className="col-12 col-md-6">
             <SubirFotoButton updateUser={updateUser} user={user}/>
             <BorrarCuentaButton />
+            <SubirVideojuegoButton updateUser={updateUser} user={user}/>
           </div>
 
         </section>
