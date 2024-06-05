@@ -8,8 +8,6 @@ import { PictureOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Modal, Image, Upload } from "antd";
 import ImgCrop from "antd-img-crop";
 
-import "./SubirFotoButton.css";
-
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -113,7 +111,10 @@ const SubirFotoButton = ({ updateUser, user }) => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <Button 
+        id="subirFotoButton" 
+        className="boton"
+        onClick={showModal}>
         {idioma.perfil.subirFoto.boton}
         <PictureOutlined />
       </Button>

@@ -36,7 +36,10 @@ const BorrarCuentaButton = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal} style={{ backgroundColor: 'red' }}>
+      <Button 
+        id="borrarCuentaButton"
+        className='boton'
+        onClick={showModal}>
         {idioma.perfil.borrarCuenta} <ExclamationCircleOutlined />
       </Button>
       <Modal

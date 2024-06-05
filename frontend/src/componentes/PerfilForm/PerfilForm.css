@@ -4,6 +4,30 @@
 
 #perfilForm .campos {
   background-color: #fff;
+  padding: 1.5em !important;
+
+  border-radius: 1em;
+}
+
+#perfilForm .campo {
+  padding-bottom: 1.5em !important;
+  padding-left: 2em !important;
+  padding-right: 2em !important;
+}
+
+@media screen and (max-width: 576px) {
+  #perfilForm .campo {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+#perfilForm p.nombreCampo {
+  margin: 0 !important;
+  padding-bottom: 0.5em;
+
+  font-size: 1em;
+  font-weight: 700;
 }
 
 #perfilForm .error {
@@ -16,11 +40,27 @@
 
 #perfilForm .botonera {
   margin-top: 3em !important;
+  font-size: 14px;
+  font-weight: 700;
 }
 #perfilForm .botonCancelar {
   width: max-content;
 }
 
+#perfilForm .botonCancelar input {
+  width: 100%;
+  height: 100%;
+  padding: 0.4em 1.5em;
+
+  color: #000;
+  font-weight: 500;
+  background-color: #fff;
+}
+
 #perfilForm .botonGuardar {
   width: max-content;
+}
+
+#perfilForm .botonGuardar input {
+  padding: 0.4em 1.5em;
 }

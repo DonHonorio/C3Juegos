@@ -20,7 +20,7 @@ const Perfil = () => {
     }, []);
 
     return (
-      <article className='container-xl' id="perfil">
+      <article className='container-lg' id="perfil">
         <section className="row">
             <div className="col-12 titulo">
               <h1 className='text-white text-center'>{idioma.perfil.titulo}</h1>
@@ -30,10 +30,14 @@ const Perfil = () => {
 
           <PerfilCard user={user}/>
 
-          <div className="col-12 col-md-6">
-            <SubirFotoButton updateUser={updateUser} user={user}/>
-            <BorrarCuentaButton />
-            <SubirVideojuegoButton updateUser={updateUser} user={user}/>
+          <div className="col-12 col-sm-6 d-flex flex-column justify-content-evenly" id='botonesPerfil'>
+            <div className='botonesArriba d-flex justify-content-evenly gap-4'>
+              <SubirFotoButton updateUser={updateUser} user={user}/>
+              <BorrarCuentaButton />
+            </div>
+            <div className='d-flex justify-content-center'>
+              <SubirVideojuegoButton updateUser={updateUser} user={user}/>
+            </div>
           </div>
 
         </section>

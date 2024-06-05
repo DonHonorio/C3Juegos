@@ -8,9 +8,33 @@
     margin: 0 !important;
   }
 
-  .container, .container-fluid, .container-sm, .container-md, .container-xl {
+  .container, .container-fluid, .container-sm, .container-md, .container-xl, .container-lg {
     padding: 0;
   }
+
+  .gap-xs > * {
+    margin-right: 1em;
+  }
+  .gap-sm > * {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .gap-md > * {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  
+  @media (min-width: 576px) { /* 768px es el breakpoint para md en Bootstrap 5 */
+    .gap-sm > * {
+      margin-right: 1.5rem !important;
+    }
+  }
+  @media (min-width: 768px) { /* 768px es el breakpoint para md en Bootstrap 5 */
+    .gap-md > * {
+      margin-right: 1.5rem !important;
+    }
+  }
+
 
 /* COLOR DE FONDO de toda la página y fuente de letra*/
 body {

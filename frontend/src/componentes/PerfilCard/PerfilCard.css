@@ -1,0 +1,68 @@
+#perfilCard {
+  color: #fff;
+}
+
+#perfilCard .imagenPerfil {
+  max-width: 7em;
+  max-height: 7em;
+}
+
+#perfilCard .imagenPerfil img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#perfilCard .informacion h4 {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 0.5em;
+}
+
+#perfilCard .informacion p:nth-child(2)  {
+  font-size: 0.75em;
+  font-weight: 400;
+  margin: 0;
+  padding-bottom: 0.5em;
+}
+
+#perfilCard .informacion p:nth-child(3) {
+  font-size: 0.75em;
+  font-weight: 400;
+  margin: 0;
+  padding-bottom: 0.5em;
+}
+
+@media screen and (min-width: 576px) {
+  #perfilCard {
+    padding: 0 1em !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #perfilCard {
+    padding: 0 2em !important;
+  }
+
+  #perfilCard .informacion h4 {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin: 0;
+    padding-bottom: 0.5em;
+  }
+  
+  #perfilCard .informacion p:nth-child(2)  {
+    font-size: 1.25em;
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 0.5em;
+  }
+  
+  #perfilCard .informacion p:nth-child(3) {
+    font-size: 1em;
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 0.5em;
+  } 
+}

@@ -1,3 +1,41 @@
 #perfil .titulo {
   margin-top: 12em !important;
 }
+
+#perfil .perfilParteArriba {
+  margin-bottom: 3em !important;
+}
+
+/******************************/
+/* Botones */
+
+#botonesPerfil {
+  min-height: 6em;
+  padding: 0 1em !important;
+}
+
+#botonesPerfil .boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  background-color: #ffffff1c;
+  border: none;
+  font-weight: 700;
+  font-size: 0.75em;
+  color: #fff;
+  padding: 1.3em 0;
+}
+.boton span {
+}
+#subirFotoButton {
+}
+
+#borrarCuentaButton {
+  background-color: #E13D3D !important;
+}
+
+#subirJuegoButton {
+
+}

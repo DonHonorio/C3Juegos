@@ -29,21 +29,24 @@ const SubirVideojuegoButton = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        {idioma.perfil.videojuego.boton}
-        <PictureOutlined />
-      </Button>
-      <Modal
-        title={idioma.perfil.subirFoto.tituloVentana}
-        open={isModalOpen}
-        onOk={handleOk}
-        okText={idioma.perfil.videojuego.publicar}
-        cancelText={idioma.perfil.videojuego.cancelar}
-        onCancel={handleCancel}
-      >
-        {/* Contenido del modal */}
-        <VideojuegoForm ref={myFormComponentRef}/>
-      </Modal>
+    <Button className="boton" 
+      id="subirJuegoButton"
+      block 
+      onClick={showModal}>
+      {idioma.perfil.videojuego.boton}
+      <PictureOutlined />
+    </Button>
+    <Modal
+      title={idioma.perfil.subirFoto.tituloVentana}
+      open={isModalOpen}
+      onOk={handleOk}
+      okText={idioma.perfil.videojuego.publicar}
+      cancelText={idioma.perfil.videojuego.cancelar}
+      onCancel={handleCancel}
+    >
+      {/* Contenido del modal */}
+      <VideojuegoForm ref={myFormComponentRef}/>
+    </Modal>
     </>
   );
 };

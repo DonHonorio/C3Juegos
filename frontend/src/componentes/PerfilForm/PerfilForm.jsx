@@ -1,5 +1,6 @@
 import React,{ useState, useContext, useEffect } from 'react'
 import { UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 import sendRequest from '../../servicios/functions';
 import { Input } from 'antd';
 
@@ -10,12 +11,17 @@ import Boton from '../Boton/Boton';
 
 const PerfilForm = ({user, updateUser}) => {
   const idioma = useContext(IdiomaContext);
+  const navegar = useNavigate();
 
   // datos del formulario rellenados por el usuario
   const [formData, setFormData] = useState({});
   // datos iniciales del usuario
   const [initialData, setInitialData] = useState({});
   const [errors, setErrors] = useState({});
+
+  function navegarHome() {
+    navegar("/");
+  } 
   
   useEffect(() => {
     setInitialData(user);
@@ -67,8 +73,8 @@ const PerfilForm = ({user, updateUser}) => {
       
       <div className="row campos">
         {/* Nombre */}
-        <div className="col-12 col-md-6">
-          <p>{idioma.perfil.nombre}</p>
+        <div className="col-12 col-md-6 campo">
+          <p className='nombreCampo'>{idioma.perfil.nombre}</p>
           <Input placeholder={initialData.name}
             onChange={handleChange}
             name='name'
@@ -78,8 +84,8 @@ const PerfilForm = ({user, updateUser}) => {
           {(errors && errors.name) ? errors.name.map((error, index) => <p className='error' key={index}>{error}</p>) : ''}
         </div>
         {/* Apellidos */}
-        <div className="col-12 col-md-6">
-          <p>{idioma.perfil.apellidos}</p>
+        <div className="col-12 col-md-6 campo">
+          <p className='nombreCampo'>{idioma.perfil.apellidos}</p>
           <Input placeholder={initialData.apellidos}
             onChange={handleChange}
             name='apellidos'
@@ -90,8 +96,8 @@ const PerfilForm = ({user, updateUser}) => {
         </div>
 
         {/* NickName */}
-        <div className="col-12 col-md-6">
-          <p>{idioma.perfil.nickname}</p>
+        <div className="col-12 col-md-6 campo">
+          <p className='nombreCampo'>{idioma.perfil.nickname}</p>
           <Input placeholder={initialData.nickname}
             onChange={handleChange}
             name='nickname'
@@ -101,8 +107,8 @@ const PerfilForm = ({user, updateUser}) => {
           {(errors && errors.nickname) ? errors.nickname.map((error, index) => <p className='error' key={index}>{error}</p>) : ''}
         </div>
         {/* Modulo */}
-        <div className="col-12 col-md-6">
-          <p>{idioma.perfil.modulo}</p>
+        <div className="col-12 col-md-6 campo">
+          <p className='nombreCampo'>{idioma.perfil.modulo}</p>
           <Input placeholder={initialData.modulo}
             onChange={handleChange}
             name='modulo'
@@ -114,8 +120,8 @@ const PerfilForm = ({user, updateUser}) => {
 
         <LineaDivisoria />
         {/* Dirección de Correo */}
-        <div className="col-12 col-md-8 col-lg-6">
-          <p>{idioma.perfil.direccionDeCorreo}</p>
+        <div className="col-12 col-md-8 col-lg-6 campo">
+          <p className='nombreCampo'>{idioma.perfil.direccionDeCorreo}</p>
           <Input placeholder={initialData.email}
             onChange={handleChange}
             name='email'
@@ -130,8 +136,8 @@ const PerfilForm = ({user, updateUser}) => {
 
 
         {/* Contraseña Actual */}
-        <div className="col-12 col-md-6">
-          <p>{idioma.perfil.passwordActual}</p>
+        <div className="col-12 col-md-6 campo">
+          <p className='nombreCampo'>{idioma.perfil.passwordActual}</p>
           <Input.Password
             prefix={<UserOutlined />}
             onChange={handleChange}
@@ -143,8 +149,8 @@ const PerfilForm = ({user, updateUser}) => {
           {(errors && errors.old_password) ? errors.old_password.map((error, index) => <p className='error' key={index}>{error}</p>) : ''}
         </div>
         {/* Nueva Contraseña */}
-        <div className="col-12 col-md-6">
-          <p>{idioma.perfil.passwordNueva}</p>
+        <div className="col-12 col-md-6 campo">
+          <p className='nombreCampo'>{idioma.perfil.passwordNueva}</p>
           <Input.Password
             prefix={<UserOutlined />}
             onChange={handleChange}
@@ -156,8 +162,8 @@ const PerfilForm = ({user, updateUser}) => {
           {(errors && errors.password) ? errors.password.map((error, index) => <p className='error' key={index}>{error}</p>) : ''}
         </div>
         {/* Confirmar Nueva Contraseña */}
-        <div className="col-12">
-          <p>{idioma.perfil.passwordConfirmar}</p>
+        <div className="col-12 campo">
+          <p className='nombreCampo'>{idioma.perfil.passwordConfirmar}</p>
           <Input.Password
             prefix={<UserOutlined />}
             onChange={handleChange}
@@ -171,9 +177,9 @@ const PerfilForm = ({user, updateUser}) => {
       </div>
 
       <div className="row">
-        <div className="col-12 botonera d-flex justify-content-end">
+        <div className="col-12 botonera gap-5 d-flex justify-content-center justify-content-md-end flex-wrap">
           <div className='botonCancelar'>
-            <Boton value={idioma.perfil.botonera.cancelar} />
+            <Boton value={idioma.perfil.botonera.cancelar} buttonFunction={navegarHome} />
           </div>
           <div className="botonGuardar">
             <Boton 
