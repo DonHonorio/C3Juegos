@@ -9,7 +9,7 @@ import LineaDivisoria from '../LineaDivisoria/LineaDivisoria';
 import './VideojuegoForm.css';
 import VideojuegoInput from '../VideojuegoInput/VideojuegoInput';
 
-const VideojuegoForm = React.forwardRef(({user, updateUser}, ref) => {
+const VideojuegoForm = React.forwardRef((props, ref) => {
   const idioma = useContext(IdiomaContext);
   const authToken = storage.get("authToken");
 
@@ -17,13 +17,9 @@ const VideojuegoForm = React.forwardRef(({user, updateUser}, ref) => {
   const [formData, setFormData] = useState({});
   // lista de ficheros subidos por el usuario
   const [fileList, setFileList] = useState([]);
-  // datos iniciales del usuario
-  const [initialData, setInitialData] = useState({});
   const [errors, setErrors] = useState({});
-  
-  useEffect(() => {
-    setInitialData(user);
-  }, [user]);
+  const [success, setSuccess] = useState({});
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleChange = (e) => {
     setFormData({
@@ -34,17 +30,6 @@ const VideojuegoForm = React.forwardRef(({user, updateUser}, ref) => {
 
   const csrf = async() => {
     await axios.get('/sanctum/csrf-cookie');
-  }
-
-  // función que evitar enviar campos vacíos al servidor, cuando el usuario ha empezado a escribir en un campo y luego lo ha dejado vacío
-  // ya que si no escribe nada en el campo se queda con el valor inicial, pero si escribe algo y luego lo borra, el campo queda vacío
-  function arreglarFormulario(obj) {
-    // Recorre cada campo en formData
-    for (let campo in obj) {
-      // Si el campo está vacío, asigna el valor del campo correspondiente en initialData
-      obj[campo] = obj[campo] || initialData[campo];
-    }
-    return obj;
   }
 
   const handleSubmit = async (e) => {
@@ -68,20 +53,23 @@ const VideojuegoForm = React.forwardRef(({user, updateUser}, ref) => {
         },
         onUploadProgress: ({ total, loaded }) => {
           const percent = Math.round((loaded / total) * 100);
+          setUploadProgress(percent); // Actualiza el estado de progreso
           console.log(`Upload progress: ${percent}%`); // Porcentaje de subida
+
         },
       });
       const response = respuesta.data;
   
       if(response.status === true){
-        // updateUser(response.user);
-        // setFormData({...formData, controles: '', historia: '', genero: '', nombreJuego: '', portada: ''});
         setFormData({});
-        setErrors([]);
+        setFileList([]);
+        setSuccess({message: response.message});
+        setErrors({});
         console.log('HA SIDO EXITOSO:', response.message);
       } else {
         console.log('HA FALLADO LA SUBIDA:', response.errors);
         setErrors(response.errors);
+        setSuccess({});
       }
     } catch (error) {
 
@@ -164,12 +152,14 @@ const VideojuegoForm = React.forwardRef(({user, updateUser}, ref) => {
       {/* Videojuego */}
       <div className="row">
         <div className="col-12">
-          <VideojuegoInput setFileList={setFileList} fileList={fileList} formData={formData} setFormData={setFormData}/>
+          <VideojuegoInput setFileList={setFileList} fileList={fileList}/>
         </div>
         <div className="col-12">
           {(errors && errors.fichero) ? errors.fichero.map((error, index) => <p className='error' key={index}>{error}</p>) : ''}
           {(errors && errors.error) ? errors.error.map((error, index) => <p className='error' key={index}>{error}</p>) : ''}
         </div>
+        <progress value={uploadProgress} max="100" />
+        {(success && success.message) ? <p className='text-success'>{success.message}</p> : '' }
       </div>
       
     </form>

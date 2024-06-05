@@ -36,6 +36,14 @@ class GameController extends Controller
             ], 200); // 400 -> "Bad Request"
         }
 
+        // Validar si hay al menos un fichero
+        if (!$request->hasFile('files')) {
+            return response()->json([
+                'status' => false,
+                'errors' => ErrorHelper::devolverError('fichero', 'Debe haber al menos un fichero.')
+            ], 200);
+        }
+
         $todosFicheros = $request->file('files');
 
         // Validar si hay al menos un fichero HTML
@@ -98,13 +106,13 @@ class GameController extends Controller
     
                             if (preg_match($srcNotSlash, $content)) { // Si la ruta no tiene / y '
                                 $srcNotSlash = "/(src=')/";
-                                $newUrl = "src='/juegos/12/nuevoJuego/";
+                                $newUrl = "src='" . $newPath;
                                 $content = preg_replace($srcNotSlash, $newUrl, $content);
                             }
     
                             $srcSimpleQuotes = "/(src=')(?!http:\/\/|https:\/\/|\/\/)[^']*\/(?=[^']*')/"; // Con / en la ruta y '   
                             if (preg_match($srcSimpleQuotes, $content)) {
-                                $newUrl = "src='/juegos/12/nuevoJuego/";
+                                $newUrl = "src='" . $newPath;
                                 $content = preg_replace($srcSimpleQuotes, $newUrl, $content);
                             }
                         }
@@ -118,13 +126,13 @@ class GameController extends Controller
                             
                             if (preg_match($srcNotSlash, $content)) { // Si la ruta no tiene / y "
                                 $srcNotSlash = '/(src=")/';
-                                $newUrl = 'src="/juegos/12/nuevoJuego/';
+                                $newUrl = 'src="' . $newPath;
                                 $content = preg_replace($srcNotSlash, $newUrl, $content);
                             }
     
                             $srcDoubleQuotes = '/(src=")(?!http:\/\/|https:\/\/|\/\/)[^"]*\/(?=[^"]*")/'; // Con / en la ruta y "
                             if (preg_match($srcDoubleQuotes, $content) ) {
-                                $newUrl = 'src="/juegos/12/nuevoJuego/';
+                                $newUrl = 'src="' . $newPath;
                                 $content = preg_replace($srcDoubleQuotes, $newUrl, $content);
                             }
                         }
@@ -137,12 +145,12 @@ class GameController extends Controller
                             
                             if (preg_match($hrefNotSlash, $content)) { // Si la ruta no tiene / y '
                                 $hrefNotSlash = "/(href=')/";
-                                $newUrl = "href='/juegos/12/nuevoJuego/";
+                                $newUrl = "href='" . $newPath;
                                 $content = preg_replace($hrefNotSlash, $newUrl, $content);
                             }
     
                             if (preg_match($hrefSimpleQuotes, $content) ) { // Con / en la ruta y '
-                                $newUrl = "href='/juegos/12/nuevoJuego/";
+                                $newUrl = "href='" . $newPath;
                                 $content = preg_replace($hrefSimpleQuotes, $newUrl, $content);
                             }
                         }
@@ -153,12 +161,12 @@ class GameController extends Controller
                         if (preg_match($hrefDoubleQuotes, $content) || preg_match($hrefNotSlash, $content) ){ 
                             if (preg_match($hrefNotSlash, $content)) { // Si la ruta no tiene / y "
                                 $hrefNotSlash = '/(href=")/';
-                                $newUrl = 'href="/juegos/12/nuevoJuego/';
+                                $newUrl = 'href="' . $newPath;
                                 $content = preg_replace($hrefNotSlash, $newUrl, $content);
                             }
     
                             if (preg_match($hrefDoubleQuotes, $content) ) { // Con / en la ruta y "
-                                $newUrl = 'href="/juegos/12/nuevoJuego/';
+                                $newUrl = 'href="' . $newPath;
                                 $content = preg_replace($hrefDoubleQuotes, $newUrl, $content);
                             }
                         }
@@ -167,20 +175,20 @@ class GameController extends Controller
                         // cuando la url tiene comillas simples
                         $urlSingleQuotes = "/url\('(?!http:\/\/|https:\/\/|\/\/)[^']*\/(?=[^']*'\))/";
                         if (preg_match($urlSingleQuotes, $content) ) {
-                            $newUrl = "url('/juegos/12/nuevoJuego/";
+                            $newUrl = "url('" . $newPath;
                             $content = preg_replace($urlSingleQuotes, $newUrl, $content);
                         }
                         // // cuando la url tiene comillas dobles
                         $urlDoubleQuotes = '/url\("(?!http:\/\/|https:\/\/|\/\/)[^"]*\/(?=[^"]*"\))/';
                         if (preg_match($urlDoubleQuotes, $content)) {
-                            $newUrl = 'url("/juegos/12/nuevoJuego/';
+                            $newUrl = 'url("' . $newPath;
                             $content = preg_replace($urlDoubleQuotes, $newUrl, $content);
                             
                         }
                         // cuando la url no tiene comillas
                         $urlNoQuotes = '/url\((?!http:\/\/|https:\/\/|\/\/|\'|")[^)]*\/(?=[^\)]*\))/';
                         if (preg_match($urlNoQuotes, $content)) {
-                            $newUrl = 'url(/juegos/12/nuevoJuego/';
+                            $newUrl = 'url(' . $newPath;
                             $content = preg_replace($urlNoQuotes, $newUrl, $content);
                         }
                     }
@@ -190,20 +198,20 @@ class GameController extends Controller
                         // cuando la url tiene comillas simples
                         $urlSingleQuotes = "/url\('(?!http:\/\/|https:\/\/|\/\/)[^']*\/(?=[^']*'\))/";
                         if (preg_match($urlSingleQuotes, $content) ) {
-                            $newUrl = "url('/juegos/12/nuevoJuego/";
+                            $newUrl = "url('". $newPath;
                             $content = preg_replace($urlSingleQuotes, $newUrl, $content);
                         }
                         // // cuando la url tiene comillas dobles
                         $urlDoubleQuotes = '/url\("(?!http:\/\/|https:\/\/|\/\/)[^"]*\/(?=[^"]*"\))/';
                         if (preg_match($urlDoubleQuotes, $content)) {
-                            $newUrl = 'url("/juegos/12/nuevoJuego/';
+                            $newUrl = 'url("' . $newPath;
                             $content = preg_replace($urlDoubleQuotes, $newUrl, $content);
                             
                         }
                         // cuando la url no tiene comillas
                         $urlNoQuotes = '/url\((?!http:\/\/|https:\/\/|\/\/|\'|")[^)]*\/(?=[^\)]*\))/';
                         if (preg_match($urlNoQuotes, $content)) {
-                            $newUrl = 'url(/juegos/12/nuevoJuego/';
+                            $newUrl = 'url(' . $newPath;
                             $content = preg_replace($urlNoQuotes, $newUrl, $content);
                         }
                         
@@ -214,7 +222,7 @@ class GameController extends Controller
                         // Import
                         $importURL = '/(import\s+[\'"])(?!http:\/\/|https:\/\/|\/\/)[^\'"]*\/(?=[^\'"]*[\'"])/';
                         if (preg_match($importURL, $content) ) {
-                            $newURL = "/juegos/12/nuevoJuego/";
+                            $newURL = $newPath;
                             $content = preg_replace($importURL, $newURL, $content);
                         }
     
@@ -226,14 +234,14 @@ class GameController extends Controller
                         $urlNoSlash = '/url\(\s*(?!http:\/\/|https:\/\/|\/\/|\'|"|\/)([^)]*)\s*\)/';
                         if (preg_match($urlNoQuotes, $content) || preg_match($urlNoSlash, $content)) {
                             if (preg_match($urlNoQuotes, $content)) { 
-                                $newUrl = 'url(/juegos/12/nuevoJuego/';
+                                $newUrl = 'url(' . $newPath;
                                 $content = preg_replace($urlNoQuotes, $newUrl, $content);
                             }
     
                             if (preg_match($urlNoSlash, $content)) { 
-                                $content = preg_replace_callback($urlNoSlash, function($matches) { 
+                                $content = preg_replace_callback($urlNoSlash, function($matches) use ($newPath) {
                                     // $matches[1] contiene el texto dentro de los paréntesis
-                                    return "url(/juegos/12/nuevoJuego/" . $matches[1] . ")";
+                                    return "url(" . $newPath . $matches[1] . ")";
                                 }, $content);
                             }
                         }
@@ -244,14 +252,14 @@ class GameController extends Controller
                         $audioSingleQuotes = "/Audio\('([^']*\/)(?=[^']*)(\.js|\.css|\.svg|\.png|\.jpg|\.jpeg|\.gif|\.mp3|\.json|\.ts|\.jsx|\.tsx|\.mjs|\.wasm|\.html|\.xml|\.csv|\.txt|\.md|.cur|\.mp3|\.wav)'\)/s";
                         if (preg_match($audioSingleQuotes, $content) || preg_match($audioNoSlash, $content)) {
                             if (preg_match($audioSingleQuotes, $content) ) {
-                                $content = preg_replace_callback($audioSingleQuotes, function($matches) { 
-                                    return "Audio('/juegos/12/nuevoJuego/" . $matches[2] . $matches[3] . "')";
+                                $content = preg_replace_callback($audioSingleQuotes, function($matches) use ($newPath) { 
+                                    return "Audio('" . $newPath . $matches[2] . $matches[3] . "')";
                                 }, $content);
                             }
                             
                             if (preg_match($audioNoSlash, $content)) { // Si la ruta no tiene / y '
-                                $content = preg_replace_callback($audioNoSlash, function($matches) { 
-                                    return "Audio('/juegos/12/nuevoJuego/" . $matches[1] . $matches[2] . "')";
+                                $content = preg_replace_callback($audioNoSlash, function($matches) use ($newPath) { 
+                                    return "Audio('" . $newPath . $matches[1] . $matches[2] . "')";
                                 }, $content);
                             }
                         }
@@ -262,25 +270,21 @@ class GameController extends Controller
                         // $audioNoFile = '/Audio\("(.*\/)"/';
                         $audioNoFile = '/Audio\("([^"\/]*)\/([^.\/"]+)\/"/';
                         if (preg_match($audioDoubleQuotes, $content) || preg_match($audioNoSlash, $content) || preg_match($audioNoFile, $content) ) {
-                            // return response()->json([
-                            //     'status' => true,
-                            //     'message' => 'No tiene ficheros'
-                            // ], 200);
                             if (preg_match($audioDoubleQuotes, $content) ) {
-                                $content = preg_replace_callback($audioDoubleQuotes, function($matches) { 
-                                    return 'Audio("/juegos/12/nuevoJuego/' . $matches[2] . $matches[3] . '")';
+                                $content = preg_replace_callback($audioDoubleQuotes, function($matches) use ($newPath) { 
+                                    return 'Audio("' . $newPath . $matches[2] . $matches[3] . '")';
                                 }, $content);
                             }
                             
                             if (preg_match($audioNoSlash, $content)) { // Si la ruta no tiene / y '
-                                $content = preg_replace_callback($audioNoSlash, function($matches) { 
-                                    return 'Audio("/juegos/12/nuevoJuego/' . $matches[1] . $matches[2] . '")';
+                                $content = preg_replace_callback($audioNoSlash, function($matches) use ($newPath) { 
+                                    return 'Audio("' . $newPath . $matches[1] . $matches[2] . '")';
                                 }, $content);
                             }
     
                             if (preg_match($audioNoFile, $content)) { // Si la ruta no tiene ficheros
-                                $content = preg_replace_callback($audioNoFile, function($matches) {
-                                    return 'Audio("/juegos/12/nuevoJuego/' . '"';
+                                $content = preg_replace_callback($audioNoFile, function($matches) use ($newPath) {
+                                    return 'Audio("' . $newPath . '"';
                                 }, $content);
                             }
                         }
@@ -291,14 +295,14 @@ class GameController extends Controller
                         $variableSingleQuotes = "/'([^']*?)\/([^'\/]*?)(\.js|\.css|\.svg|\.png|\.jpg|\.jpeg|\.gif|\.mp3|\.json|\.ts|\.jsx|\.tsx|\.mjs|\.wasm|\.html|\.xml|\.csv|\.txt|\.md|.cur|\.wav)'/"; // Con / en la ruta y '
                         if (preg_match($variableSingleQuotes, $content) || preg_match($variableNoSlash, $content) ) {
                             if (preg_match($variableSingleQuotes, $content)) { // Si la ruta tiene / y '
-                                $content = preg_replace_callback($variableSingleQuotes, function($matches) { 
-                                    return "'/juegos/12/nuevoJuego/" . $matches[2] . $matches[3] . "'";
+                                $content = preg_replace_callback($variableSingleQuotes, function($matches) use ($newPath) { 
+                                    return "'" . $newPath . $matches[2] . $matches[3] . "'";
                                 }, $content);
                             }
     
                             if (preg_match($variableNoSlash, $content)) { // Si la ruta no tiene / y '
-                                $content = preg_replace_callback($variableNoSlash, function($matches) { 
-                                    return "'/juegos/12/nuevoJuego/" . $matches[1] . $matches[2] . "'";
+                                $content = preg_replace_callback($variableNoSlash, function($matches) use ($newPath) { 
+                                    return "'" . $newPath . $matches[1] . $matches[2] . "'";
                                 }, $content);
                             }
                         }
@@ -308,14 +312,14 @@ class GameController extends Controller
                         $variableDoubleQuotes = '/"([^"]*?)\/([^"\/]*?)(\.js|\.css|\.svg|\.png|\.jpg|\.jpeg|\.gif|\.mp3|\.json|\.ts|\.jsx|\.tsx|\.mjs|\.wasm|\.html|\.xml|\.csv|\.txt|\.md|.cur|\.wav)"/'; // Con / en la ruta y "
                         if (preg_match($variableDoubleQuotes, $content) || preg_match($variableNoSlash, $content) ) {
                             if (preg_match($variableDoubleQuotes, $content)) { // Si la ruta tiene / y "
-                                $content = preg_replace_callback($variableDoubleQuotes, function($matches) { 
-                                    return '"/juegos/12/nuevoJuego/' . $matches[2] . $matches[3] . '"';
+                                $content = preg_replace_callback($variableDoubleQuotes, function($matches) use ($newPath) { 
+                                    return '"' . $newPath . $matches[2] . $matches[3] . '"';
                                 }, $content);
                             }
     
                             if (preg_match($variableNoSlash, $content)) { // Si la ruta no tiene / y "
-                                $content = preg_replace_callback($variableNoSlash, function($matches) { 
-                                    return '"/juegos/12/nuevoJuego/' . $matches[1] . $matches[2] . '"';
+                                $content = preg_replace_callback($variableNoSlash, function($matches) use ($newPath) { 
+                                    return '"' . $newPath . $matches[1] . $matches[2] . '"';
                                 }, $content);
                             }
                         }
@@ -345,7 +349,7 @@ class GameController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => $request->all()
+            'message' => '¡Juego Creado Correctamente!'
         ], 201);
     }
     

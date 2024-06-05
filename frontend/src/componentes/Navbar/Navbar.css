@@ -6,6 +6,7 @@
 
     background-color: transparent;
     color: #fff;
+    user-select: none;
 }
 
 /* logo */

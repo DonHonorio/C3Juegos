@@ -17,6 +17,8 @@
 
   display: flex;
   align-items: center;
+  
+  user-select: none;
 }
 
 /* Título y subtítulo de la cabecera */
@@ -137,11 +139,13 @@
 #home .ranking .titular {
   color: #fff;
   padding: 0 2em !important;
+  user-select: none;
 }
 
 #home .ranking .titular h2 {
   max-width: 473px;
   font-size: 1.25em;
+  user-select: none;
 }
 
 #home .ranking .titular p {
@@ -195,6 +199,8 @@
 #home .totales .titular {
   color: #fff;
   padding: 0 2.5em !important;
+
+  user-select: none;
 }
 
 #home .totales .titular h2 {
@@ -215,6 +221,8 @@
 
 #home .listaJuegos {
   margin-top: 25em !important;
+  
+    user-select: none;
 }
 
 #home .listaJuegos .filtros {

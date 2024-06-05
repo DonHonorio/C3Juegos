@@ -136,7 +136,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="listaJuegos col-12">
+            <section className="listaJuegos col-12" id='listaJuegos'>
                 <div className="row">
                     <div className="col-12 portada">
                         <h2>{idioma.landingPage.listaJuegos.titulo}</h2>
