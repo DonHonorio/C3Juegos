@@ -1,3 +1,18 @@
+/* MARGEN PARA QUE NO SE SUPERPONGA CON EL NAVBAR */
+#login .mt-5 {
+  margin-top: 40em !important;
+} 
+@media screen and (min-width: 576px) {
+  #login .mt-5 {
+    margin-top: 35em !important;
+  } 
+} 
+@media screen and (min-width: 992px) {
+  #login .mt-5 {
+    margin-top: 20em !important;
+  } 
+}
+
 #login {
   height: 100vh;
 }

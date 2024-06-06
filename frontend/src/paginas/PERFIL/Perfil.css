@@ -1,5 +1,16 @@
+/* MARGEN PARA QUE NO SE SUPERPONGA CON EL NAVBAR */
 #perfil .titulo {
-  margin-top: 12em !important;
+  margin-top: 40em !important;
+} 
+@media screen and (min-width: 576px) {
+  #perfil .titulo {
+    margin-top: 35em !important;
+  } 
+} 
+@media screen and (min-width: 992px) {
+  #perfil .titulo {
+    margin-top: 20em !important;
+  } 
 }
 
 #perfil .perfilParteArriba {
@@ -27,15 +38,11 @@
   color: #fff;
   padding: 1.3em 0;
 }
-.boton span {
-}
-#subirFotoButton {
-}
 
 #borrarCuentaButton {
   background-color: #E13D3D !important;
 }
 
-#subirJuegoButton {
-
+#subirJuegoButton span {
+  margin-right: 0.75em;
 }

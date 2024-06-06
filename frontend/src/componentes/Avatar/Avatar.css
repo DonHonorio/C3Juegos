@@ -1,19 +1,29 @@
 #avatar {
-  display: flex;
-  justify-content: center;
 }
 
-#avatar .linkAvatar {
+/* #avatar .linkAvatar {
   width: auto;
-}
+} */
 
 #avatar p {
-  display: inline;
-  margin-right: 2em;
+  margin: 0;
 }
 
-#avatar .linkAvatar img {
+/* #avatar .linkAvatar img {
   max-width: 100px;
   object-fit: cover;
   margin: 0;
+} */
+
+#avatar .imagenPerfil {
+  max-width: 7em;
+  max-height: 7em;
+}
+
+#avatar .imagenPerfil img {
+  margin: 0;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }

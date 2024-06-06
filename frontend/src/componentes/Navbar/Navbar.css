@@ -1,5 +1,5 @@
 #navbar {
-    width: 99.9%;
+    width: 100%;
     position: absolute;
     top: 0;
     padding-top: 1.5em !important;
@@ -34,8 +34,17 @@
     justify-content: space-between;
     align-items: center;
 }
+#navbar p {
+    margin: 0;
+}
+@media screen and (max-width: 992px){
+    #navbar p, #navbar .enlace {
+        margin-bottom: 1em !important;
+    }
+}
 
-/* Para que cuando pulsemos el logo de marcapersonal sepamos que es un enlace */
+
+
 #navbar a {
     cursor: pointer;
 }
@@ -56,14 +65,15 @@
 /* Botones de registrarse e iniciarSesion */
 #navbar .botonRegistrarse input {
     background-color: #3B44F6;
-    max-width: 190px;
+    width: 190px;
 }
 
 #navbar .botonIniciarSesion input {
     background-color: transparent;
     border: 1px solid #fff;
-    max-width: 190px;
+    width: 190px;
 }
+
 
 #navbar li.botonera_avatar {
     min-width: 228px;
@@ -77,11 +87,21 @@
     text-decoration: none;
 }
 
-#navbar .enlace {
-    margin-bottom: 1em !important;
+
+#navbar li.botonera_login {
+    padding-right: 12em !important;
 }
 
-@media screen and (max-width: 992px){
+@media screen and (min-width: 992px) and (max-width: 1300px){
+    #navbar #boton input {
+        width: 100%;
+        height: 100%;
+        padding: 0.4em 0.5em; 
+    }
+}
+
+
+/* @media screen and (max-width: 992px){
 
     #navbar .botonCerrarSesion input {
         margin-top: 1.5em;
@@ -114,11 +134,11 @@
     #navbar .botonIniciarSesion input {
         padding-left: 1em;
     }
-}
+} */
 
-@media screen and (min-width: 992px){
-    /* Para que en versiones grandes el navbar se quede fijo arriba */
+/* Para que en versiones grandes el navbar se quede fijo arriba */
+/* @media screen and (min-width: 992px){
     #navbar {
         position: fixed;
     }
-}
+} */

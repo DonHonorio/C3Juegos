@@ -4,12 +4,12 @@ import { Link} from "react-router-dom";
 import "./Home.css";
 
 import useHome from '../../hooks/useHome';
-import useLikesGames from '../../hooks/useLikesGames';
 import useAvgRatings from '../../hooks/useAvgRatings';
 import storage from '../../Storage/storage';
 import useJuegosFavoritos from '../../hooks/useJuegosFavoritos';
 import IdiomaContext from '../../contextos/IdiomaContext';
 import StoreContext from '../../contextos/StoreContext';
+import ScrollUp from '../../componentes/ScrollUp/ScrollUp';
 
 import Boton from '../../componentes/Boton/Boton';
 import JuegoMincard from '../../componentes/JuegoMincard/JuegoMincard';
@@ -56,6 +56,8 @@ const Home = () => {
                     <p>{idioma.landingPage.cabecera.subtitulo}</p>
                 </div>
             </section>
+
+            <ScrollUp />
 
             {(authUser) ?
                 <section className="favoritos col-12">

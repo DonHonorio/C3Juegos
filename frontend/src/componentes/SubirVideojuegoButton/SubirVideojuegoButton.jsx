@@ -1,6 +1,7 @@
 import React, { createRef, useContext, useState } from "react";
 import IdiomaContext from "../../contextos/IdiomaContext";
 import { PictureOutlined } from "@ant-design/icons";
+import { RiGameFill } from "react-icons/ri";
 import { Button, Modal } from "antd";
 import VideojuegoForm from "../VideojuegoForm/VideojuegoForm";
 
@@ -34,7 +35,7 @@ const SubirVideojuegoButton = () => {
       block 
       onClick={showModal}>
       {idioma.perfil.videojuego.boton}
-      <PictureOutlined />
+      <RiGameFill />
     </Button>
     <Modal
       title={idioma.perfil.subirFoto.tituloVentana}

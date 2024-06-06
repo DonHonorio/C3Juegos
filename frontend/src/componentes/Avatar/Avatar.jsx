@@ -10,13 +10,17 @@ const Avatar = ({nickname, id }) => {
   const { avatarUser } = useContext(StoreContext);
 
   return (
-      <div id='avatar' >
-          <Link className='linkAvatar' to={`/perfil/${id}`} >
+      <Link className='linkAvatar' to={`/perfil/${id}`} >
+        <div className='d-flex  justify-content-between align-items-center' id='avatar' >
+          <div>
             <p>{nickname}</p>
-            {storage.get('authUser').fotoPerfil ? <img src={avatarUser} alt="avatar" id='imagenAvatar' /> 
-                                                : <UserOutlined style={{ fontSize: '2em' }} /> }
-          </Link>
-      </div>
+          </div>
+          <div className='imagenPerfil'>
+            {storage.get('authUser').fotoPerfil ? <img src={avatarUser} alt="avatar"/> 
+                                                : <UserOutlined style={{ fontSize: '7em' }} /> }
+          </div>
+        </div>
+      </Link>
   );
 };
 export default Avatar;

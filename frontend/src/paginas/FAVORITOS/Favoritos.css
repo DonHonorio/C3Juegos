@@ -1,10 +1,25 @@
 /***************************
  * ListaJuegos
 ***************************/
-
-#favoritos .listaJuegos {
-  margin-top: 25em !important;
+/* MARGEN PARA QUE NO SE SUPERPONGA CON EL NAVBAR */
+#favoritos .listaJuegos .favoritosTitulo {
+  margin-top: 40em !important;
+} 
+@media screen and (min-width: 576px) {
+  #favoritos .listaJuegos .favoritosTitulo {
+    margin-top: 35em !important;
+  } 
+} 
+@media screen and (min-width: 992px) {
+  #favoritos .listaJuegos .favoritosTitulo {
+    margin-top: 20em !important;
+  } 
 }
+
+#favoritos .listaJuegos .filtros {
+  padding: 10em 0 !important;
+}
+
 
 #favoritos .listaJuegos .filtros {
   background-color: #fff;

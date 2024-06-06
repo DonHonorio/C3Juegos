@@ -3,7 +3,7 @@ import React,{ useContext } from 'react';
 import './Favoritos.css';
 
 import IdiomaContext from '../../contextos/IdiomaContext';
-import useLikesGames from '../../hooks/useLikesGames';
+import ScrollUp from '../../componentes/ScrollUp/ScrollUp';
 import useAvgRatings from '../../hooks/useAvgRatings';
 import useJuegosFavoritos from '../../hooks/useJuegosFavoritos';
 import StoreContext from '../../contextos/StoreContext';
@@ -37,6 +37,8 @@ const Favoritos = () => {
                     <h2>{idioma.favoritos.titulo}</h2>
                 </div>
             </div>
+
+            <ScrollUp />
 
             <div className="row filtros">
                 <div className="col-12 titulo text-center">

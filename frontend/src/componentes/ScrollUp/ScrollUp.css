@@ -1,0 +1,40 @@
+/* No voy a mentir, el diseño lo he visto en un video de YouTube. Queda muy bien
+El video es este: https://www.youtube.com/watch?v=fYGe-SuFAHU */
+
+html {
+  scroll-behavior: smooth;
+}
+
+#ScrollUp a {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dc143c;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  transition: 0.2s ease-out;
+}
+
+#ScrollUp a span {
+  color: #fff;
+  font-size: 3rem;
+  transition: 0.2s ease-out;
+}
+
+#ScrollUp a:hover {
+  background-color: #be1a3b;
+}
+#ScrollUp a:hover span {
+  transform: translateY(-4px);
+}
+
+/* Solo se va ha ver a partir de 576px de ancho */
+@media screen and (max-width: 576px) {
+  #ScrollUp {
+    display: none;
+  }
+}
