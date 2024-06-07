@@ -1,0 +1,31 @@
+#comentario {
+  height: 100%;
+  padding: 1.5em !important;
+
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 1em;
+}
+
+#comentario .nickname {
+  font-weight: 500;
+  font-size: 1.125em;
+}
+
+#comentario .fechaPublicacion, #comentario .contenidoOpinion {
+  font-weight: 400;
+  font-size: 0.875em;
+}
+
+@media screen and (min-width: 768px) {
+  #comentario .nickname {
+    font-size: 1.5em;
+  }
+  #comentario .fechaPublicacion, #comentario .contenidoOpinion {
+    font-size: 1em;
+  }
+  #comentario .valoracion {
+    font-size: 1em;
+  }
+  
+}

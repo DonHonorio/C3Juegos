@@ -2,14 +2,16 @@ import React,{ useState, useContext } from 'react'
 import { Rate } from 'antd';
 import './ComentarioForm.css'
 
+import StoreContext from '../../contextos/StoreContext';
 import IdiomaContext from '../../contextos/IdiomaContext';
-import avatarSrc from '../../assets/img/avatar.svg';
+import storage from '../../Storage/storage';
+import { UserOutlined } from '@ant-design/icons';
 import Boton from '../Boton/Boton';
 import sendRequest from '../../servicios/functions';
 
 const ComentarioForm = (props) => {
-
   const idioma = useContext(IdiomaContext);
+  const { avatarUser } = useContext(StoreContext);
 
   const [rating, setRating] = useState(null);
   const [comment, setComment] = useState('');
@@ -41,9 +43,17 @@ const ComentarioForm = (props) => {
     }
   } 
 
+  const cancelar = () => {setComment(''); setRating(null)}
+
+  // Es para que el textarea se redimensione automáticamente
+  const autoResize = (e) => {
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 'px';
+  };
+
   return (
     <section className="col-12 comentarioForm">
-      <form onSubmit={enviar} className="row">
+      <form onSubmit={enviar} className="row gap-3">
         <div className="estrellas col-12 text-center">
           <Rate 
             allowHalf 
@@ -53,13 +63,21 @@ const ComentarioForm = (props) => {
             allowClear
             />
         </div>
-        <div className="zonaEscri ir col-12 d-flex">
-          <div className="fotoPerfilForm">
-            <img src={avatarSrc} alt="fotoPerfilFormulario" />
+        <div className="zonaEscribir col-12 d-flex gap-3 align-items-center align-items-sm-end">
+          <div className="imagenPerfil">
+            {storage.get('authUser').fotoPerfil ? <img src={avatarUser} alt="avatar" width={250}/> 
+                                              : <UserOutlined style={{ fontSize: '7em' }} /> }
           </div>
+          <textarea 
+            rows="1"
+            placeholder={idioma.juego.comentarios.añadir}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            onInput={autoResize}
+            required
+          />
           <input 
-            type="text" 
-            className='w-100' 
+            type="text"
             placeholder={idioma.juego.comentarios.añadir}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
@@ -67,7 +85,7 @@ const ComentarioForm = (props) => {
           />
         </div>
         <div className="botonesForm col-12 d-flex justify-content-end">
-          <Boton value={idioma.juego.comentarios.cancelar} />
+          <Boton value={idioma.juego.comentarios.cancelar} buttonFunction={cancelar}/>
           <Boton 
             value={idioma.juego.comentarios.opinar}
             type="submit"

@@ -1,28 +1,60 @@
 #detallesJuego {
   width: 100%;
-  padding: 0;
+  max-width: 1040px;
+  padding: 0 10% !important;
+}
+@media screen and (min-width: 1400px) {
+  #detallesJuego {
+    padding: 0 !important;
+  }
 }
 
-#detallesJuego .contenedor {
-  margin-top: 12em;
-  padding: 0;
+
+/* CARCASA JUEGO */
+#detallesJuego .carcasaJuego {
+  width: 100%;
+  max-width: 247px;
 }
+@media screen and (min-width: 992px) {
+  #detallesJuego .carcasaJuego {
+    max-width: 444px;
+  }
+}
+
+
+/**** PORTADA **/
+#detallesJuego .cabeceraGame h1 {
+  font-weight: 800;
+  font-size: 4em;
+  color: #fff;
+  margin: 0;
+  user-select: none;
+}
+
+@media screen and (max-width: 576px) {
+  #detallesJuego .cabeceraGame h1 {
+    font-size: 2.25em;
+    padding: 0 0.25em;
+  }
+}
+
 
 #detallesJuego .portada {
-  width: 100%;
-  text-align: center;
-}
-#detallesJuego .portada img {
-  width: 100%;
-  /* height: 100%; */
-  max-inline-size: 300px;
+  max-width: 27.75em;
+  max-height: 30.6em;
+  }
+  
+  #detallesJuego .portada img {
+    width: 100%;
+    height: 100%;
+    border-radius: 2em;
   object-fit: cover;
 }
 
-
-#detallesJuego .carcasaJuego {
-  padding: 0 10em !important;
+#detallesJuego .botonJugar {
+  margin-top: 1em !important;
 }
+
 
 
 /************************* LIKES Y VALORACONES */
@@ -30,8 +62,8 @@
   padding: 0.5em 0.5em;
   
   color: #fff;
-  font-weight: 400;
-  font-size: 1em;
+  font-weight: 500;
+  font-size: 1.5em;
 }
 
 #detallesJuego .likes img, #detallesJuego .valoracion img {
@@ -70,4 +102,52 @@
     font-weight: 500;
     font-size: 1.4em;
   }
+}
+
+
+
+
+/************************* INFO JUEGO ********/
+
+#detallesJuego .infoJuego {
+  width: 100%;
+  max-width: 308px;
+  height: 100%;
+  padding: 1em 2em 2em 2em;
+
+  background-color: #ffffff2b;
+  border-radius: 1em;
+  color: #EFEFEF;
+}
+@media screen and (min-width: 992px) {
+  #detallesJuego .infoJuego {
+    max-width: 551px;
+  }
+}
+
+#detallesJuego .infoJuego h2 {
+  font-weight: 400;
+  font-size: 2em;
+  margin: 0;
+  padding-bottom: 0.25em;
+}
+
+#detallesJuego .infoJuego p {
+  font-weight: 400;
+  font-size: 0.75em;
+  margin: 0;
+}
+
+@media screen and (min-width: 992px) {
+  #detallesJuego .infoJuego p {
+    font-size: 1.125em;
+  }
+}
+
+/******** CONTROLES E HISTORIA ***********  */
+
+#detallesJuego .controles, #detallesJuego .historia {
+  width: 100%;
+  max-height: 14em;
+  overflow-y: auto;
 }

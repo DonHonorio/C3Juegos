@@ -31,6 +31,7 @@ function App() {
   return (
     <div className='container-fluid'>
       {/* Aquí enviamos el idioma seleccionado */}
+      {/* Junto con el proveedor Store */}
       <StoreProvider>
         <IdiomaContext.Provider value={losIdiomas[idiomas.idiomaElegido]}>
           {NavbarComponent}
@@ -40,21 +41,18 @@ function App() {
                 <Home />
               </>
             } />
+            <Route path="/juego/:idJuego"     element={<Juego />} />
             <Route path="/login"         element={<Login />} />
             <Route path="/register"      element={<Register />}/>
             <Route path="/acercaDe"      element={<AcercaDe />} />
 
+            {/* Aquí se encuentran las rutas protegidas por React */}
             <Route element={<ProtectedRoutes />} >
               <Route path="/favoritos/:id" element={
                 <>
                   <Favoritos />
                 </>
               } />
-              <Route path="/juego/:idJuego"     element={
-                <>
-                  <Juego />
-                </>
-              } />   
               <Route path="/perfil/:id"    element={
                 <>
                   <Perfil />

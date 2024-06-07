@@ -12,12 +12,11 @@ import useRatingsGame from '../../hooks/useRatingsGame';
 import useCheckLike from '../../hooks/useCheckLike';
 
 import AjaxLoader from '../AjaxLoader/AjaxLoader';
-import sendRequest, { normalizarValoracionJuego } from '../../servicios/functions';
+import sendRequest, { normalizarFormatoFecha, normalizarValoracionJuego } from '../../servicios/functions';
 
 import juegoRankingSrc1 from './../../assets/img/juegos/ranking/FotoJuegoRanking1.svg';
 import estrellaSrc from './../../assets/img/juegos/estrella.svg';  
 import Boton from '../Boton/Boton';
-import Link from 'antd/es/typography/Link';
 
 const DetallesJuego = (props) => {
   // inicializo los hooks y variables
@@ -33,6 +32,7 @@ const DetallesJuego = (props) => {
   const avgRatings = useAvgRatings();
   const creador = useCreador(props.idJuego);
   const ratingsGame = useRatingsGame(props.idJuego);
+  console.log('CREADOR', creador);
 
   const handleLike = async() => {
     setLike(!like)
@@ -52,70 +52,72 @@ const DetallesJuego = (props) => {
     <article className='row' id='detallesJuego'>
       {(!game) ? <AjaxLoader />
         :  
-        <section className='col-lg-10 offset-lg-1 contenedor'>
-          <div className="row">
-            <div className="cabeceraGame col-12 bg-primary">
+        <section className='contenedor'>
+          <div className="row gap-5">
+            <div className="cabeceraGame col-12 text-center text-md-start">
               <h1>{game.nombreJuego}</h1>
             </div>
-
-            <div className="cuerpoGame col-12">
-              <div className="row">
-                <div className="col-12 col-md-6 carcasaJuego bg-secondary">
-                  <div className='row'>
+            
+            <div 
+              className="cuerpoGame col-12 d-flex flex-column gap-5 flex-sm-row justify-content-sm-between align-items-center align-items-sm-start flex-grow-1 justify-content-center flex-md-row justify-content-md-evenly justify-content-lg-between">
+                <div className="carcasaJuego row">
                     <div className="col-12 portada">
                       <img src={juegoRankingSrc1} alt="portadaJuego" />
                     </div>
                     <div className="col-12 botonJugar">
-                    <a href={`${API_URL}/api/jugar/${game.user_id}/${game.nombreJuego}`} target='_blank'>
-                      <Boton
-                        clase="jugar"
-                        value={idioma.juego.showJuego.jugar}
-                      />
-                    </a>
+                      <a href={`${API_URL}/api/jugar/${game.user_id}/${game.nombreJuego}`} target='_blank'>
+                        <Boton
+                          clase="jugar"
+                          value={idioma.juego.showJuego.jugar}
+                        />
+                      </a>
                     </div>
-                    <div className="col-7 likes text-end">
-                      <button onClick={handleLike} style={{ color: 'transparent', background: 'transparent', border: 'none' }}>
-                        <HeartFilled style={(like) ? { color: '#f00' } : { color: '#fff'}} />
-                      </button>
-                      <p>{(cantidadLikes) ? cantidadLikes : 0} Likes</p>
+                    <div className="col-12 d-flex justify-content-center">
+                      <div className="likes text-end">
+                        <button onClick={handleLike} style={{ color: 'transparent', background: 'transparent', border: 'none' }}>
+                          <HeartFilled style={(like) ? { color: '#f00' } : { color: '#fff'}} />
+                        </button>
+                        <p>{(cantidadLikes) ? cantidadLikes : 0} Likes</p>
+                      </div>
+                      <div className="valoracion">
+                        <img src={estrellaSrc} alt="estrella" />
+                        <p>{(avgRatings && avgRatings[game.id]) ? normalizarValoracionJuego(avgRatings[game.id])
+                                        : 0}
+                        </p>
+                      </div>
                     </div>
-                    <div className="col-5 valoracion">
-                      <img src={estrellaSrc} alt="estrella" />
-                      <p>{(avgRatings && avgRatings[game.id]) ? normalizarValoracionJuego(avgRatings[game.id])
-                                      : 0}
-                      </p>
-                    </div>
-                  </div>
                 </div>
 
-                <div className="col-12 col-md-6 infoJuego bg-danger">
-                  <div className="row">
-
+                <div className="infoJuego">
+                  <div className="row gap-3 gap-lg-4 gap-xxl-5">
                     <div className="col-12">
-                      <p>{idioma.juego.showJuego.creadoPor} {(creador) ? creador.nickname : 'Cargando...'}</p>
-                    </div>
-                    <div className="col-12">
-                      <p>{(ratingsGame) ? ratingsGame.length : ''} {idioma.juego.showJuego.valoraciones} | {(props.comentarios) ? props.comentarios.length : 0} {(props.comentarios && props.comentarios.length === 1) ? idioma.juego.showJuego.opinion : idioma.juego.showJuego.opiniones}</p>
-                    </div>
-                    <div className="col-12">
-                      <p>{idioma.juego.showJuego.publicado} 23/02/2024</p>
+                      <div className="row gap-1 gap-xxl-2">
+                        <div className="col-12">
+                          <p>{idioma.juego.showJuego.creadoPor} {(creador) ? creador.nickname : 'Cargando...'}</p>
+                        </div>
+                        <div className="col-12">
+                          <p>{(ratingsGame) ? ratingsGame.length : ''} {idioma.juego.showJuego.valoraciones} | {(props.comentarios) ? props.comentarios.length : 0} {(props.comentarios && props.comentarios.length === 1) ? idioma.juego.showJuego.opinion : idioma.juego.showJuego.opiniones}</p>
+                        </div>
+                        <div className="col-12">
+                          <p>{idioma.juego.showJuego.publicado} {normalizarFormatoFecha(game.created_at)}</p>
+                        </div>
+                      </div>
                     </div>
                     <div className="col-12">
                       <h2>{idioma.juego.showJuego.historia}</h2>
-                      <p>
+                      <p className='historia'>
                         {game.historia}
                       </p>
                     </div>
                     <div className="col-12">
                       <h2>{idioma.juego.showJuego.controles}</h2>
-                      <p>
+                      <p className='controles'>
                         {game.controles}
                       </p>                    
                     </div>
 
                   </div>
                 </div>
-              </div>
             </div>
 
 

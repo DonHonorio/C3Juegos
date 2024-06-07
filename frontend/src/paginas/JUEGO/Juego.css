@@ -1,3 +1,83 @@
+#showGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#showGame #detallesJuego {
+  margin-top: 12em !important;
+}
+
+#detallesJuego .contenedor {
+  margin-top: 12em;
+  padding: 0;
+}
+
+@media screen and (min-width: 992px){
+  #showGame #detallesJuego {
+    margin-top: 0em !important;
+  }
+}
+
+
+
+
+/**************************** COMENTARIOS / OPINIONES ****************************/
+
 #showGame #opiniones {
   margin-top: 5em !important;
+  padding: 0 1em !important;
+}
+@media screen and (min-width: 768px) {
+  #showGame #opiniones {
+    padding: 0 2em !important;
+  }  
+}
+@media screen and (min-width: 992px) {
+  #showGame #opiniones {
+    padding: 0 6em !important;
+  }  
+}
+
+#showGame #opiniones .titulo h2 {
+  font-weight: 600;
+  font-size: 2.5em;
+  color: #fff;
+  margin: 0 !important;
+
+  user-select: none;
+}
+@media screen and (min-width: 768px) {
+  #showGame #opiniones .titulo h2 {
+    font-size: 4em;
+  } 
+}
+
+
+/* caja comentarios */
+#showGame .cajaComentarios ul li {
+  list-style: none;
+  margin: 1em 0 !important;
+  padding: 0;
+}
+
+@media screen and (min-width: 576px) {
+  #showGame .cajaComentarios {
+    margin: 0 2em !important;
+  }
+}
+
+
+/* cuando no hay comentarios */
+
+#showGame .cajaComentarios li.sinComentarios {
+  font-size: 1.5em;
+  text-align: center;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  #showGame .cajaComentarios li.sinComentarios {
+    font-size: 3em;
+  }
 }

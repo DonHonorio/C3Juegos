@@ -60,6 +60,8 @@ const idiomas = {
         añadir: "Añade una opinión...",
         cancelar: "Cancelar",
         opinar: "Opinar",
+        registrateOpinar: "Regístrate para opinar",
+        noComentarios: "Aún no hay comentarios, sé el primero en comentar"
       }
     },
     perfil: {
@@ -162,6 +164,8 @@ const idiomas = {
         añadir: "Add an opinion...",
         cancelar: "Cancel",
         opinar: "Opine",
+        registrateOpinar: "Sign up to comment",
+        noComentarios: "There are no comments yet, be the first to comment"
       }
     },
     perfil: {

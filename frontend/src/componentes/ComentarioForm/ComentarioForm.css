@@ -1,18 +1,94 @@
 .comentarioForm {
   background-color: #fff;
+  width: 100%;
+  max-width: 1200px;
+
+  border-radius: 1em;
 }
+
+.comentarioForm form {
+  padding: 1em !important;
+}
+
+
+
+
 
 /*** botones ***/
 
 .comentarioForm #boton input {
-  padding: 0.4em 2.5em;
+  padding: 0.1em 1.2em;
   border: 1px solid transparent;
   border-radius: 10px;
-
+  font-size: 0.85em;
+  
   color: #000;
-}
-
+  }
+  @media screen and (min-width: 768px) {
+    .comentarioForm #boton input {
+      padding: 0.4em 2.5em;
+  }
+  }
 .comentarioForm #boton input[type=submit] {
   background-color: #ccc;
   color: #fff;
+}
+ 
+
+/*** en móviles se muestra el textarea y en tablets y ordenadores el input ***/
+@media (max-width: 575px) {
+  .comentarioForm .zonaEscribir textarea {
+    display: block;
+  }
+  .comentarioForm .zonaEscribir input {
+    display: none;
+  }
+}
+@media (min-width: 576px) {
+  .comentarioForm .zonaEscribir textarea {
+    display: none;
+  }
+  .comentarioForm .zonaEscribir input {
+    display: block;
+  }
+}
+/* Foto Perfil */
+.comentarioForm .zonaEscribir .imagenPerfil {
+  max-width: 4em;
+  max-height: 4em;
+}
+
+.comentarioForm .zonaEscribir .imagenPerfil img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+
+/**** input ****/
+.comentarioForm .zonaEscribir input {
+  width: 100%;
+  padding: 0.25em;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 1em;
+}
+.comentarioForm .zonaEscribir input:focus {
+  outline: none;
+}
+
+/* textarea */
+.comentarioForm .zonaEscribir textarea {
+  width: 100%;
+  height: 100%;
+  padding: 0.25em;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 1em;
+  resize: none;
+  overflow: hidden;
+}
+
+.comentarioForm .zonaEscribir textarea:focus {
+  outline: none;
 }

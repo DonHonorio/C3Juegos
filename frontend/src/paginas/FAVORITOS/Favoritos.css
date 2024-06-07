@@ -4,11 +4,23 @@
 /* MARGEN PARA QUE NO SE SUPERPONGA CON EL NAVBAR */
 #favoritos .listaJuegos .favoritosTitulo {
   margin-top: 40em !important;
+  margin-bottom: 3em !important;
+  text-align: center;
 } 
+/* TITULO */
+#favoritos .listaJuegos .favoritosTitulo h2 {
+  font-weight: 600;
+  font-size: 2em;
+  color: #fff;
+}
+
 @media screen and (min-width: 576px) {
   #favoritos .listaJuegos .favoritosTitulo {
     margin-top: 35em !important;
   } 
+  #favoritos .listaJuegos .favoritosTitulo h2 {
+    font-size: 4em;
+  }
 } 
 @media screen and (min-width: 992px) {
   #favoritos .listaJuegos .favoritosTitulo {
