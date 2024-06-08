@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ErrorHelper;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,14 +27,17 @@ class AuthController extends Controller
             return response()->json([
                 // 'Valor de nickname: '. $request->nickname,
                 'status' => false,
-                'errors' => $validator->errors()->all()
-            ], 400); // 400 -> "Bad Request"
+                'errors' => $validator->errors()
+            ], 200); // 400 -> "Bad Request"
         }
 
         $user = User::create([
             'nickname' => $request->nickname,
             'password' => Hash::make($request->password),
-            'email' => $request->email
+            'email' => $request->email,
+            'name' => $request->name,
+            'apellidos' => $request->apellidos,
+            'modulo' => $request->modulo
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -55,8 +59,8 @@ class AuthController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Unauthorized',
-                'errors' => ['Credenciales Incorrectas']
-            ], 401); // 401 -> "Unauthorized"
+                'errors' => ErrorHelper::devolverError('password', 'Credenciales Incorrectas')
+            ], 200); // 401 -> "Unauthorized"
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();

@@ -1,23 +1,23 @@
 /* MARGEN PARA QUE NO SE SUPERPONGA CON EL NAVBAR */
-#login {
+#register {
   margin-top: 25em !important;
   padding: 0 1em !important;
-  max-width: 50em;
+  max-width: 1050px;
 } 
 @media screen and (min-width: 576px) {
-  #login {
+  #register {
     margin-top: 17em !important;
     padding: 0 5em !important;
   } 
 } 
 @media screen and (min-width: 992px) {
-  #login {
+  #register {
     margin-top: 10em !important;
   } 
 }
 
 
-#login h1 {
+#register h1 {
   font-weight: 600;
   font-size: 3em;
   color: #fff;
@@ -25,27 +25,27 @@
   margin-bottom: 1em;
 }
 
-#login .campos {
+#register .campos {
   background-color: #fff;
   padding: 1.5em !important;
 
   border-radius: 1em;
 }
 
-#login .campo {
+#register .campo {
   padding-bottom: 1.5em !important;
   padding-left: 2em !important;
   padding-right: 2em !important;
 }
 
 @media screen and (max-width: 576px) {
-  #login .campo {
+  #register .campo {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
 }
 
-#login p.nombreCampo {
+#register p.nombreCampo {
   margin: 0 !important;
   padding-bottom: 0.5em;
 
@@ -53,25 +53,24 @@
   font-weight: 700;
 }
 
-#login .error {
+#register .error {
   padding: 0;
   margin: 0;
 
   text-align: center;
-  font-size: 1.5em !important;
   color: #ee8686;
 }
 
-#login .botonera {
+#register .botonera {
   margin-top: 3em !important;
   font-size: 14px;
   font-weight: 700;
 }
-#login .botonCancelar {
+#register .botonCancelar {
   width: max-content;
 }
 
-#login .botonCancelar input {
+#register .botonCancelar input {
   width: 100%;
   height: 100%;
   padding: 0.4em 1.5em;
@@ -81,10 +80,10 @@
   background-color: #fff;
 }
 
-#login .botonGuardar {
+#register .botonGuardar {
   width: max-content;
 }
 
-#login .botonGuardar input {
+#register .botonGuardar input {
   padding: 0.4em 1.5em;
 }

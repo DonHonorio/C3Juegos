@@ -66,7 +66,7 @@ const ComentarioForm = (props) => {
         <div className="zonaEscribir col-12 d-flex gap-3 align-items-center align-items-sm-end">
           <div className="imagenPerfil">
             {storage.get('authUser').fotoPerfil ? <img src={avatarUser} alt="avatar" width={250}/> 
-                                              : <UserOutlined style={{ fontSize: '7em' }} /> }
+                                              : <UserOutlined style={{ fontSize: '4em' }} /> }
           </div>
           <textarea 
             rows="1"

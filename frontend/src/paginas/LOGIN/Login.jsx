@@ -1,73 +1,105 @@
-import React, {useState} from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import sendRequest from '../../servicios/functions';
+import React,{ useState, useContext, useEffect } from 'react'
+import { UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import sendRequest, { show_alerta } from '../../servicios/functions';
 import storage from '../../Storage/storage';
-import './Login.css';
 
-import juegoRankingSrc1 from './../../assets/img/juegos/ranking/FotoJuegoRanking1.svg';
-import DivInput from '../../componentes/DivInput/DivInput';
+import { Input } from 'antd';
+
+import IdiomaContext from '../../contextos/IdiomaContext';
+import './Login.css';
+import Boton from '../../componentes/Boton/Boton';
 
 const Login = () => {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const idioma = useContext(IdiomaContext);
   const navegar = useNavigate();
 
-  const csrf = async() => {
-    await axios.get('/sanctum/csrf-cookie');
-  }
+  // datos del formulario rellenados por el usuario
+  const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState({});
 
-  const login = async(e) => {
+  function navegarHome() {
+    navegar("/");
+  } 
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    await csrf();
 
-    const form = {email: email, password:password};
-    const respuesta = await sendRequest('POST', form, '/api/login','',true, false);
+    const respuesta = await sendRequest('POST', formData, `/api/login`,'',false, false);
+
     if(respuesta.status == true){
       storage.set('authToken', respuesta.token);
       storage.set('authUser', JSON.stringify(respuesta.user));
       navegar('/');
+      show_alerta(respuesta.message, 'success');
+    } else {
+      setErrors(respuesta.errors);
     }
-  }
+  };
 
   return (
-    <>
-      <div id='login'>
+    <section className='row'>
+
+      <form onSubmit={handleSubmit} className='container-lg' id='login'>
+
         <div className="row">
-          <div className="mt-5">
-            <div className="col-md-4 offset-md-4">
-              <div className="card border border-primary">
-                <div className="card-header bg-primary border border-primary text-white">
-                  LOGIN
-                </div>
-                <div className="card-body">
-                  <form onSubmit={login}>
-                    <DivInput type='email' icon='fa-at' value={email}
-                    className='form-control' placeholder='Email' required="required"
-                    handleChange={ (e) => setEmail(e.target.value) } />
-                    <DivInput type='password' icon='fa-key' value={password}
-                    className='form-control' placeholder='Password' required="required"
-                    handleChange={ (e) => setPassword(e.target.value) } />
-                    <div className="d-grid col-10 mx-auto">
-                      <button className="btn btn-dark">
-                        <i className='fa-solid fa-door-open'></i> Login
-                      </button>
-                    </div>
-                  </form>
+          <h1>{idioma.navbar.iniciar_sesion}</h1>
+        </div>
+        
+        <div className="row campos">
 
-                  <Link to='/register'>
-                      <i className="fa-solid fa-user-plus"></i> Register
-                  </Link>
+          {/* Dirección de Correo */}
+          <div className="col-12 campo">
+            <p className='nombreCampo'>{idioma.perfil.direccionDeCorreo}</p>
+            <Input placeholder={idioma.perfil.direccionDeCorreo}
+              onChange={handleChange}
+              name='email'
+              value={formData.email || ''}
+              status={errors.password ? "error" : ''}
+            />
+          </div>
 
-                </div>
-              </div>
+          {/* Contraseña */}
+          <div className="col-12 campo">
+            <p className='nombreCampo'>{idioma.perfil.passwordNueva}</p>
+            <Input.Password
+              prefix={<UserOutlined />}
+              onChange={handleChange}
+              value={formData.password || ''}
+              name='password'
+              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+              status={errors.password ? "error" : ''}
+            />
+          </div>
+
+          {(errors && errors.password) ? errors.password.map((error, index) => <p className='error' key={index}>{error}</p>) : ''}
+        </div>
+
+        <div className="row">
+          <div className="col-12 botonera gap-2 d-flex justify-content-center justify-content-md-end flex-wrap">
+            <div className='botonCancelar'>
+              <Boton value={idioma.perfil.botonera.cancelar} buttonFunction={navegarHome} />
+            </div>
+            <div className="botonGuardar">
+              <Boton 
+                value={idioma.navbar.iniciar_sesion}
+                type="submit"
+                />
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+        
+      </form>
+
+    </section>
+  )
 }
 
 export default Login

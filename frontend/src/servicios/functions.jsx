@@ -16,7 +16,6 @@ export const sendRequest = async(method, params, url, redir='',alerta=false, tok
     response => {
 
       res = response.data,
-      (alerta) ? show_alerta(response.data.message, 'success'):'',
       setTimeout( () =>
         (redir !== '') ? window.location.href = redir : '', 2000)
     }).catch( (errors) => {

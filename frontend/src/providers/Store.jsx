@@ -36,6 +36,19 @@ const Store = ({ children }) => {
     setLikes(checkLikes);
   }, [checkLikes]);
 
+  // useEffect(() => {
+  //   setFileList( 
+  //     storage.get('authUser') && storage.get('authUser').fotoPerfil ?
+  //         [ {
+  //           uid: '-1',
+  //           name: 'image.png',
+  //           status: 'done',
+  //           url: `${API_URL}/api/user/fotoPerfil/${(storage.get('authUser')) ? storage.get('authUser').id : 0}`,
+  //         },]
+  //       : [] 
+  //     );
+  // }, [storage.get('authUser')]);
+
   const [actualizarFavoritos, setAcutalizarFavoritos] = useState(0);
 
   return (
