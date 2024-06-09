@@ -34,6 +34,7 @@ import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 const Home = () => {
     // inicializo los hooks
     const idioma = useContext(IdiomaContext);
+    const { genero } = useContext(StoreContext);
     const { actualizarFavoritos } = useContext(StoreContext);
     const home = useHome();
     // const {likesGames, setLikesGames} = useLikesGames();
@@ -47,6 +48,7 @@ const Home = () => {
 
     // (home) ? console.log(home.listaHome) : '';
     // (juegosFavoritos) ? console.log(juegosFavoritos) : '';
+    console.log('GENERO', genero);
     
     return (
         <main className="row" id="home">
@@ -153,9 +155,10 @@ const Home = () => {
                 </div>
 
                 
+                
                 <div className="row lista">
                     {(home.buscando) ? <AjaxLoader />
-                                        : games.map((game, index) => {
+                                        : games.filter(game => genero === 'TODOS' || game.genero === genero).map((game, index) => {
                                             const arrayImagenes = [juegoSrc1, juegoSrc2, juegoSrc3, juegoSrc4, juegoSrc5, juegoSrc6, juegoSrc7, juegoSrc8];
 
                                             return  <div className="col-12 col-sm-6 col-lg-3" key={game.id}>

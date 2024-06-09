@@ -68,7 +68,7 @@ const Login = () => {
 
           {/* Contraseña */}
           <div className="col-12 campo">
-            <p className='nombreCampo'>{idioma.perfil.passwordNueva}</p>
+            <p className='nombreCampo'>{idioma.perfil.password}</p>
             <Input.Password
               prefix={<UserOutlined />}
               onChange={handleChange}

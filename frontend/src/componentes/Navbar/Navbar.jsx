@@ -6,7 +6,7 @@ import './Navbar.css';
 import IdiomaContext from '../../contextos/IdiomaContext';
 import losIdiomas from '../../mocks/mock-idiomas';
 
-import srcLogo from './../../assets/img/logo.svg';
+import srcLogo from './../../assets/img/logoC3Juegos2.svg';
 import Boton from '../Boton/Boton';
 import Avatar from '../Avatar/Avatar';
 import Idiomas from '../Idiomas/Idiomas';

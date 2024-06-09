@@ -24,7 +24,10 @@ import juegoSrc8 from './../../assets/img/juegos/FotoJuego8.svg';
 const Favoritos = () => {
     // inicializo los hooks y variables
     const idioma = useContext(IdiomaContext);
+    const { genero } = useContext(StoreContext);
+    
     const { actualizarFavoritos } = useContext(StoreContext);
+
 
     const avgRatings = useAvgRatings();
     const juegosFavoritos = useJuegosFavoritos('todos', actualizarFavoritos);
@@ -53,7 +56,7 @@ const Favoritos = () => {
                                             <AjaxLoader /> 
                                             :
                                             (juegosFavoritos.length > 0) ?
-                                                juegosFavoritos.map((game, index) => {
+                                                juegosFavoritos.filter(game => genero === 'TODOS' || game.genero === genero).map((game, index) => {
                                                     const arrayImagenes = [juegoSrc1, juegoSrc2, juegoSrc3, juegoSrc4, juegoSrc5, juegoSrc6, juegoSrc7, juegoSrc8];
 
                                                 return <div className="col-12 col-sm-6 col-lg-3" key={game.id}>

@@ -1,0 +1,66 @@
+#acercaDe {
+  text-align: center;
+  margin-top: 30em !important; 
+  max-width: 50em;
+
+  color: #fff;
+  padding: 0.5em !important;
+}
+
+@media screen and (min-width: 576px) {
+  #acercaDe {
+    margin-top: 27em !important; 
+  } 
+}
+@media screen and (min-width: 768px) {
+  #acercaDe {
+    border: 4px solid #fff;  
+    border-radius: 5%;
+  } 
+}
+@media screen and (min-width: 992px) {
+  #acercaDe {
+    margin-top: 15em !important; 
+  }   
+}
+
+/******** TÍTULO ********/
+#acercaDe h1 {
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+
+
+/******** IMÁGENES ********/
+#acercaDe .foto img {
+  width: 100%;
+  height: 100%;
+}
+
+
+/**** Desarrollador ****/
+#acercaDe .desarrollador .foto {
+  max-width: 7em;
+}
+#acercaDe .desarrollador .foto img {
+  border-radius: 30%;
+}
+#acercaDe .desarrollador .nombre {
+  max-width: 7em;
+  font-size: 1em;
+}
+
+
+/**** Proyecto ****/
+#acercaDe .proyecto .foto {
+  max-width: 7em;
+}
+
+/**** Soporte ****/
+
+#acercaDe .soporte .foto {
+  max-width: 7em;
+}
+#acercaDe .soporte p {
+  max-width: 30em;
+}

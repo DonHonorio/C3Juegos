@@ -12,6 +12,9 @@ const Store = ({ children }) => {
   // Hook que recupera si el usuario ha dado like a cada juego
   const {checkLikes} =  useCheckLikes();
 
+  // Estado que almacena el género seleccionado
+  const [genero, setGenero] = useState('TODOS');
+
   // Estado que almacena si el usuario ha dado like a cada juego
   const [likes, setLikes]                 = useState(null);
   const [cantidadLikes, setCantidadLikes] = useState(null);
@@ -57,7 +60,8 @@ const Store = ({ children }) => {
       cantidadLikes, setCantidadLikes,
       likes, setLikes,
       avatarUser, setAvatarUser,
-      fileList, setFileList
+      fileList, setFileList,
+      genero, setGenero
       }}>
       {children}
     </StoreContext.Provider>

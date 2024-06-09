@@ -38,7 +38,8 @@ const idiomas = {
         plataformas: "PLATAFORMAS",
         rpg: "RPG",
         deportes: "DEPORTES",
-        lucha: "LUCHA"
+        lucha: "LUCHA",
+        todos: "TODOS"
       }
     },
     favoritos: {
@@ -94,12 +95,31 @@ const idiomas = {
       nickname: "NickName",
       modulo: "Módulo",
       direccionDeCorreo: "Dirección de Correo",
+      password: "Contraseña",
       passwordActual: "Contraseña Actual",
       passwordNueva: "Nueva Contraseña",
       passwordConfirmar: "Confirmar Nueva Contraseña",
       botonera: {
         cancelar: "Cancelar",
         guardar: "Guardar Cambios"
+      }
+    },
+    acercaDe: {
+      titulo: "Acerca de",
+      desarrollador: {
+        titulo: "Desarrollador",
+        nombre: "Honorio Conesa Acosta",
+        puesto: "Programador Junior",
+        descripcion: "Creador y programador de la plataforma"
+      },
+      proyecto: {
+        titulo: "Proyecto",
+        descripcion: "Proyecto Final de Grado de 2ºDAW del CIFP Carlos III"
+      },
+      soporte: {
+        titulo: "Soporte",
+        incidencias: "Si ocurre cualquier problema con la página o hay problemas al subir un videojuego, por favor envie una incidencia:",
+        boton: "Reportar incidencia"
       }
     }
   },
@@ -142,7 +162,8 @@ const idiomas = {
         plataformas: "PLATFORMS",
         rpg: "RPG",
         deportes: "SPORTS",
-        lucha: "FIGHTING"
+        lucha: "FIGHTING",
+        todos: "ALL"
       }
     },
     favoritos: {
@@ -199,12 +220,31 @@ const idiomas = {
       nickname: "NickName",
       modulo: "Module",
       direccionDeCorreo: "Email Address",
+      password: "Password",
       passwordActual: "Current Password",
       passwordNueva: "New Password",
       passwordConfirmar: "Confirm New Password",
       botonera: {
         cancelar: "Cancel",
         guardar: "Save Changes"
+      }
+    },
+    acercaDe: {
+      titulo: "About Us",
+      desarrollador: {
+        titulo: "Developer",
+        nombre: "Honorio Conesa Acosta",
+        puesto: "Junior Programmer",
+        descripcion: "Creator and programmer of the platform"
+      },
+      proyecto: {
+        titulo: "Project",
+        descripcion: "Final Degree Project of 2nd DAW of CIFP Carlos III"
+      },
+      soporte: {
+        titulo: "Support",
+        incidencias: "If there is any problem with the page or there are problems uploading a video game, please send an incident:",
+        boton: "Report incident"
       }
     }
   }
