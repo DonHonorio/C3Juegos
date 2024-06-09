@@ -11,13 +11,13 @@ const PerfilCard = ({ user }) => {
 
   const idioma = useContext(IdiomaContext);
 
-  const { avatarUser } = useContext(StoreContext);
+  const { avatarUser, authUser } = useContext(StoreContext);
 
   return (
     <div className="col-12 col-sm-6" id='perfilCard'>
       <div className="d-flex justify-content-around justify-content-sm-start align-items-center gap-sm">
         <div className="imagenPerfil">
-        {storage.get('authUser').fotoPerfil ? <img src={avatarUser} alt="avatar" width={250}/> 
+        {authUser.fotoPerfil ? <img src={avatarUser} alt="avatar" width={250}/> 
                                               : <UserOutlined style={{ fontSize: '7em' }} /> }
         </div>
         <div className="informacion">

@@ -10,6 +10,7 @@ import srcLogo from './../../assets/img/logoC3Juegos2.svg';
 import Boton from '../Boton/Boton';
 import Avatar from '../Avatar/Avatar';
 import Idiomas from '../Idiomas/Idiomas';
+import StoreContext from '../../contextos/StoreContext';
 
 
 const Navbar = () => {
@@ -18,20 +19,21 @@ const Navbar = () => {
     const idiomas = useContext(IdiomaContext);
     const idioma = losIdiomas[idiomas.idiomaElegido];
 
-    const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
+    const { authUser, authToken, logout } = useContext(StoreContext);
     
     //navegamos al home
     function navegarHome() {
         navegar("/");
     }      
 
-    const logout = async() => {
+    const logoutInterno = async() => {
         //enviamos la petición de logout al servidor
-        axios.defaults.headers.common['Authorization'] = 'Bearer '+storage.get('authToken');
+        axios.defaults.headers.common['Authorization'] = 'Bearer '+authToken;
         await axios.get('/api/logout');
 
-        storage.remove('authToken');
-        storage.remove('authUser');
+        logout();
+        // storage.remove('authToken');
+        // storage.remove('authUser');
         navegar('/');
     }
 
@@ -73,7 +75,7 @@ const Navbar = () => {
                                     </div>
                                     <div className="col-sm-12 col-lg-6 d-flex justify-content-center align-items-center">
                                         <Boton 
-                                            buttonFunction={logout} 
+                                            buttonFunction={logoutInterno} 
                                             clase={'botonRegistrarse botonCerrarSesion'}  
                                             value={idioma.navbar.cerrar_sesion} 
                                         />

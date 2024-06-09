@@ -11,7 +11,7 @@ import sendRequest from '../../servicios/functions';
 
 const ComentarioForm = (props) => {
   const idioma = useContext(IdiomaContext);
-  const { avatarUser } = useContext(StoreContext);
+  const { avatarUser, authUser } = useContext(StoreContext);
 
   const [rating, setRating] = useState(null);
   const [comment, setComment] = useState('');
@@ -65,7 +65,7 @@ const ComentarioForm = (props) => {
         </div>
         <div className="zonaEscribir col-12 d-flex gap-3 align-items-center align-items-sm-end">
           <div className="imagenPerfil">
-            {storage.get('authUser').fotoPerfil ? <img src={avatarUser} alt="avatar" width={250}/> 
+            {authUser.fotoPerfil ? <img src={avatarUser} alt="avatar" width={250}/> 
                                               : <UserOutlined style={{ fontSize: '4em' }} /> }
           </div>
           <textarea 

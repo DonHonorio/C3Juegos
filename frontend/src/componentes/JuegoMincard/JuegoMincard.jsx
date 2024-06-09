@@ -10,12 +10,12 @@ import { sendRequest, normalizarValoracionJuego } from '../../servicios/function
 import estrellaSrc from './../../assets/img/juegos/estrella.svg';  
 
 const JuegoMincard = (props) => {
-  const { setAcutalizarFavoritos, cantidadLikes, setCantidadLikes, likes, setLikes  } = useContext(StoreContext);
+  const { authUser, setAcutalizarFavoritos, cantidadLikes, setCantidadLikes, likes, setLikes  } = useContext(StoreContext);
   const {id, juegoSrc, avgRatings, nombreJuego, creadorId} = props;
   const navegar = useNavigate();
 
   const handleLike = async() => {
-    if(likes) {
+    if(authUser) {
       setLikes({...likes, [id]: !likes[id]});
       if(likes[id]){
         // Eliminar like en la BBDD

@@ -7,7 +7,7 @@ import {Link } from 'react-router-dom';
 import storage from '../../Storage/storage';
 
 const Avatar = ({nickname, id }) => {
-  const { avatarUser } = useContext(StoreContext);
+  const { avatarUser, authUser } = useContext(StoreContext);
 
   return (
       <Link className='linkAvatar' to={`/perfil/${id}`} >
@@ -16,7 +16,7 @@ const Avatar = ({nickname, id }) => {
             <p>{nickname}</p>
           </div>
           <div className='imagenPerfil'>
-            {storage.get('authUser').fotoPerfil ? <img src={avatarUser} alt="avatar"/> 
+            {authUser.fotoPerfil ? <img src={avatarUser} alt="avatar"/> 
                                                 : <UserOutlined style={{ fontSize: '7em' }} /> }
           </div>
         </div>

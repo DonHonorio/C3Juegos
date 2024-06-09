@@ -18,13 +18,15 @@ import juegoRankingSrc1 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 import estrellaSrc from './../../assets/img/juegos/estrella.svg';  
 import Boton from '../Boton/Boton';
 import storage from '../../Storage/storage';
+import StoreContext from '../../contextos/StoreContext';
 
 const DetallesJuego = (props) => {
   // inicializo los hooks y variables
   const idioma = useContext(IdiomaContext);
+  const { authUser } = useContext(StoreContext);
 
   // estado para el like que además es un custom hook que comprueba si el usuario ha dado like al juego en la BBDD
-  const {like, setLike} = storage.get('authUser') ? useCheckLike(props.idJuego) : [];
+  const {like, setLike} = authUser ? useCheckLike(props.idJuego) : [];
   
   // juego actual
   const game = useGame(props.idJuego);

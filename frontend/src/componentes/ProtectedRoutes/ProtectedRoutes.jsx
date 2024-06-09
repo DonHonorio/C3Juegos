@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import storage from '../../Storage/storage'
+import StoreContext from '../../contextos/StoreContext';
 
 const ProtectedRoutes = ({ children }) => {
-  const authUser = storage.get('authUser');
+  const { authUser } = useContext(StoreContext);
   if(!authUser){
     return <Navigate to='/login' />
   }

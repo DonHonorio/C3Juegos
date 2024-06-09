@@ -4,10 +4,11 @@ import { Button, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import storage from '../../Storage/storage';
 import { sendRequest, confirmation } from '../../servicios/functions';
+import StoreContext from '../../contextos/StoreContext';
 
 const BorrarCuentaButton = () => {
   const idioma = useContext(IdiomaContext);
-  const authUser = storage.get('authUser');
+  const authUser = useContext(StoreContext);
 
   // Modal: Ventana emergente
   const [isModalOpen, setIsModalOpen] = useState(false);

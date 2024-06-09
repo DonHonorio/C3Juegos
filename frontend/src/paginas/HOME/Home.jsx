@@ -33,16 +33,15 @@ import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 
 const Home = () => {
     // Lo primero es saber si el usuario está autenticado  -> si no lo está la feed de juegos favoritos no se muestra
-    const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
+    const { authUser, actualizarFavoritos, genero } = useContext(StoreContext);
 
     // inicializo los hooks
     const idioma = useContext(IdiomaContext);
-    const { genero } = useContext(StoreContext);
-    const { actualizarFavoritos } = useContext(StoreContext);
     const home = useHome();
 
     const avgRatings = useAvgRatings();
-    const juegosFavoritos = authUser ? useJuegosFavoritos('home', actualizarFavoritos) : [];
+
+    const juegosFavoritos = useJuegosFavoritos('home', actualizarFavoritos, authUser);
 
     // inicializo las variables
     const { users, games, comments, ranking } = (home.listaHome) ? home.listaHome : {users: [], games: [], comments: []};

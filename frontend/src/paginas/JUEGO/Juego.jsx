@@ -14,6 +14,7 @@ import Comentario from '../../componentes/Comentario/Comentario';
 import ComentarioForm from '../../componentes/ComentarioForm/ComentarioForm';
 import ScrollUp from '../../componentes/ScrollUp/ScrollUp';
 import Boton from '../../componentes/Boton/Boton';
+import StoreContext from '../../contextos/StoreContext';
 
 const Juego = () => {
   // inicializo los hooks
@@ -22,7 +23,7 @@ const Juego = () => {
   // estado para forzar el renderizado de los comentarios al crear uno nuevo
   const [renderComentarios, setRenderComentarios] = useState(0);
 
-  const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
+  const { authUser } = useContext(StoreContext);
 
   const idioma = useContext(IdiomaContext);
   const commentsGame = useCommentsGame(idJuego, renderComentarios);
