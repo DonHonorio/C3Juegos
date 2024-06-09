@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { HeartFilled } from '@ant-design/icons';
-const API_URL = import.meta.env.VITE_API_BASE_URL;
 import "./JuegoMincard.css";
 
 import StoreContext from '../../contextos/StoreContext';
@@ -12,20 +12,26 @@ import estrellaSrc from './../../assets/img/juegos/estrella.svg';
 const JuegoMincard = (props) => {
   const { setAcutalizarFavoritos, cantidadLikes, setCantidadLikes, likes, setLikes  } = useContext(StoreContext);
   const {id, juegoSrc, avgRatings, nombreJuego, creadorId} = props;
+  const navegar = useNavigate();
 
   const handleLike = async() => {
-    setLikes({...likes, [id]: !likes[id]});
-    if(likes[id]){
-      // Eliminar like en la BBDD
-      setCantidadLikes({...cantidadLikes, [id]: cantidadLikes[id] - 1});
-      await sendRequest('DELETE', null, `/api/like/${id}`, '', false, true);
-      
+    if(likes) {
+      setLikes({...likes, [id]: !likes[id]});
+      if(likes[id]){
+        // Eliminar like en la BBDD
+        setCantidadLikes({...cantidadLikes, [id]: cantidadLikes[id] - 1});
+        await sendRequest('DELETE', null, `/api/like/${id}`, '', false, true);
+        
+      } else {
+        // Añadir like en la BBDD
+        setCantidadLikes({...cantidadLikes, [id]: cantidadLikes[id] + 1});
+        await sendRequest('POST', null, `/api/like/${id}`, '', false, true);
+      }
+      setAcutalizarFavoritos(e => e + 1);
     } else {
-      // Añadir like en la BBDD
-      setCantidadLikes({...cantidadLikes, [id]: cantidadLikes[id] + 1});
-      await sendRequest('POST', null, `/api/like/${id}`, '', false, true);
+      navegar('/login');
     }
-    setAcutalizarFavoritos(e => e + 1);
+      
   }
 
   return (

@@ -109,7 +109,7 @@
   }
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1500px) {
   .listaJuegos .generos {
     grid-template-columns: repeat(8, 170px);
     grid-template-rows: none;

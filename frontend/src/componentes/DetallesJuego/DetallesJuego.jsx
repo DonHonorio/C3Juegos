@@ -17,13 +17,14 @@ import sendRequest, { normalizarFormatoFecha, normalizarValoracionJuego } from '
 import juegoRankingSrc1 from './../../assets/img/juegos/ranking/FotoJuegoRanking1.svg';
 import estrellaSrc from './../../assets/img/juegos/estrella.svg';  
 import Boton from '../Boton/Boton';
+import storage from '../../Storage/storage';
 
 const DetallesJuego = (props) => {
   // inicializo los hooks y variables
   const idioma = useContext(IdiomaContext);
 
   // estado para el like que además es un custom hook que comprueba si el usuario ha dado like al juego en la BBDD
-  const {like, setLike} = useCheckLike(props.idJuego);
+  const {like, setLike} = storage.get('authUser') ? useCheckLike(props.idJuego) : [];
   
   // juego actual
   const game = useGame(props.idJuego);
@@ -32,7 +33,6 @@ const DetallesJuego = (props) => {
   const avgRatings = useAvgRatings();
   const creador = useCreador(props.idJuego);
   const ratingsGame = useRatingsGame(props.idJuego);
-  console.log('CREADOR', creador);
 
   const handleLike = async() => {
     setLike(!like)

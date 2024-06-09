@@ -32,23 +32,24 @@ import juegoRankingSrc4 from './../../assets/img/juegos/ranking/FotoJuegoRanking
 import juegoRankingSrc5 from './../../assets/img/juegos/ranking/FotoJuegoRanking5.svg';
 
 const Home = () => {
+    // Lo primero es saber si el usuario está autenticado  -> si no lo está la feed de juegos favoritos no se muestra
+    const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
+
     // inicializo los hooks
     const idioma = useContext(IdiomaContext);
     const { genero } = useContext(StoreContext);
     const { actualizarFavoritos } = useContext(StoreContext);
     const home = useHome();
-    // const {likesGames, setLikesGames} = useLikesGames();
+
     const avgRatings = useAvgRatings();
-    const juegosFavoritos = useJuegosFavoritos('home', actualizarFavoritos);
+    const juegosFavoritos = authUser ? useJuegosFavoritos('home', actualizarFavoritos) : [];
 
     // inicializo las variables
     const { users, games, comments, ranking } = (home.listaHome) ? home.listaHome : {users: [], games: [], comments: []};
 
-    const authUser = (storage.get('authUser')) ? storage.get('authUser') : '';
 
     // (home) ? console.log(home.listaHome) : '';
     // (juegosFavoritos) ? console.log(juegosFavoritos) : '';
-    console.log('GENERO', genero);
     
     return (
         <main className="row" id="home">
@@ -98,7 +99,7 @@ const Home = () => {
                         }  
                     </div>
                 </section>
-                                    : ''}
+                        : ''}
 
             <section className="ranking col-12">
                 <div className="row">
