@@ -7,7 +7,7 @@ import './Comentario.css';
 const Comentario = (props) => {
   return (
     <div className="col-12 d-flex flex-column align-items-center align-items-sm-start" id='comentario'>
-      <div className="d-flex align-items-center gap-3 gap-sm-4 gap-md-5">
+      <div className="d-flex align-items-center gap-3 gap-sm-4 gap-md-5 cajaComentario">
         <div className="fotoPerfil">
           {/* <img src={fotoPerfil} alt="fotoPerfil" /> */}
           <UserOutlined style={{ fontSize: '3em' }} />

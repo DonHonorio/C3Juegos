@@ -95,7 +95,7 @@ const Store = ({ children }) => {
 
   return (
     <StoreContext.Provider value={{
-      authUser, authToken,
+      authUser, authToken, setAuthUser,
       login, logout,
       actualizarFavoritos, setAcutalizarFavoritos, 
       cantidadLikes, setCantidadLikes,

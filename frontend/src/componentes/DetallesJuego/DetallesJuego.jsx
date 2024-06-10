@@ -26,7 +26,7 @@ const DetallesJuego = (props) => {
   const { authUser } = useContext(StoreContext);
 
   // estado para el like que además es un custom hook que comprueba si el usuario ha dado like al juego en la BBDD
-  const {like, setLike} = authUser ? useCheckLike(props.idJuego) : [];
+  const {like, setLike} = storage.get('authUser') ? useCheckLike(props.idJuego) : [];
   
   // juego actual
   const game = useGame(props.idJuego);

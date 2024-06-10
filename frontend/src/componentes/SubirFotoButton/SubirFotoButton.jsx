@@ -16,11 +16,11 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const authToken = storage.get("authToken");
+// const authToken = storage.get("authToken");
 
 const SubirFotoButton = ({ updateUser, user }) => {
   const idioma = useContext(IdiomaContext);
-  const { setAvatarUser, fileList, setFileList } = useContext(StoreContext);
+  const { setAvatarUser, fileList, setFileList, setAuthUser, authToken } = useContext(StoreContext);
 
   const csrfToken = async () => {
     return await axios.get("/sanctum/csrf-cookie");
@@ -44,6 +44,7 @@ const SubirFotoButton = ({ updateUser, user }) => {
     if (info.file.status === "done") {
       if (info.file.response.status) {
         updateUser(info.file.response.user);
+        setAuthUser(info.file.response.user);
         setAvatarUser(
           `${API_URL}/api/user/fotoPerfil/${
             info.file.response.user.id
@@ -57,15 +58,9 @@ const SubirFotoButton = ({ updateUser, user }) => {
       }
       // console.log(info.file.response); // Muestra la respuesta del servidor en la consola
     } else if (info.file.status === "removed") {
-      const respuesta = await sendRequest(
-        "DELETE",
-        null,
-        `/api/user/deleteFotoPerfil/${user.id}`,
-        "",
-        false,
-        false
-      );
+      const respuesta = await sendRequest("DELETE",null,`/api/user/deleteFotoPerfil/${user.id}`,"",false,false);
       updateUser({ ...respuesta.user, fotoPerfil: null });
+      setAuthUser({ ...respuesta.user, fotoPerfil: null });
       setAvatarUser(null);
       setFileList([]);
       console.log("ELIMINADO AVATAR: ");

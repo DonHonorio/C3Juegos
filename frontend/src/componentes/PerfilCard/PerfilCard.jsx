@@ -17,7 +17,7 @@ const PerfilCard = ({ user }) => {
     <div className="col-12 col-sm-6" id='perfilCard'>
       <div className="d-flex justify-content-around justify-content-sm-start align-items-center gap-sm">
         <div className="imagenPerfil">
-        {authUser.fotoPerfil ? <img src={avatarUser} alt="avatar" width={250}/> 
+        {authUser && authUser.fotoPerfil ? <img src={avatarUser} alt="avatar" width={250}/> 
                                               : <UserOutlined style={{ fontSize: '7em' }} /> }
         </div>
         <div className="informacion">

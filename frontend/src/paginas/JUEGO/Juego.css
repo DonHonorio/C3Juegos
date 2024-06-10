@@ -27,6 +27,7 @@
 #showGame #opiniones {
   margin-top: 5em !important;
   padding: 0 1em !important;
+  width: 100%;
 }
 @media screen and (min-width: 768px) {
   #showGame #opiniones {
@@ -55,6 +56,9 @@
 
 
 /* caja comentarios */
+#showGame .cajaComentarios {
+  width: 100%;
+}
 #showGame .cajaComentarios ul li {
   list-style: none;
   margin: 1em 0 !important;

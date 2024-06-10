@@ -16,7 +16,7 @@ const Avatar = ({nickname, id }) => {
             <p>{nickname}</p>
           </div>
           <div className='imagenPerfil'>
-            {authUser.fotoPerfil ? <img src={avatarUser} alt="avatar"/> 
+            {authUser && authUser.fotoPerfil ? <img src={avatarUser} alt="avatar"/> 
                                                 : <UserOutlined style={{ fontSize: '7em' }} /> }
           </div>
         </div>
