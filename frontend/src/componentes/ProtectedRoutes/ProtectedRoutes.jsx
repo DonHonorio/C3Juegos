@@ -4,8 +4,7 @@ import storage from '../../Storage/storage'
 import StoreContext from '../../contextos/StoreContext';
 
 const ProtectedRoutes = ({ children }) => {
-  const { authUser } = useContext(StoreContext);
-  if(!authUser){
+  if(!storage.get('authUser')){
     return <Navigate to='/login' />
   }
   return <Outlet />

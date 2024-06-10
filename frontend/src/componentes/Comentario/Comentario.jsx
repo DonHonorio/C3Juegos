@@ -1,4 +1,5 @@
 import React from 'react'
+import { UserOutlined } from '@ant-design/icons';
 import fotoPerfil from '../../assets/img/juegos/comentarios/fotoPerfil.svg';
 import { FaStar } from 'react-icons/fa';
 import './Comentario.css';
@@ -8,7 +9,8 @@ const Comentario = (props) => {
     <div className="col-12 d-flex flex-column align-items-center align-items-sm-start" id='comentario'>
       <div className="d-flex align-items-center gap-3 gap-sm-4 gap-md-5">
         <div className="fotoPerfil">
-          <img src={fotoPerfil} alt="fotoPerfil" />
+          {/* <img src={fotoPerfil} alt="fotoPerfil" /> */}
+          <UserOutlined style={{ fontSize: '3em' }} />
         </div>
         <div className="nicknameFecha d-flex flex-column align-items-center">
           <p className='nickname'>{props.nickname}</p>

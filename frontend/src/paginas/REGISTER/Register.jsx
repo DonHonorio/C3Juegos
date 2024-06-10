@@ -9,9 +9,11 @@ import IdiomaContext from '../../contextos/IdiomaContext';
 import LineaDivisoria from '../../componentes/LineaDivisoria/LineaDivisoria';
 import './Register.css';
 import Boton from '../../componentes/Boton/Boton';
+import StoreContext from '../../contextos/StoreContext';
 
 const Register = () => {
   const idioma = useContext(IdiomaContext);
+  const { login } = useContext(StoreContext);
   const navegar = useNavigate();
 
   // datos del formulario rellenados por el usuario
@@ -35,8 +37,9 @@ const Register = () => {
     const respuesta = await sendRequest('POST', formData, `/api/register`,'',false, false);
 
     if(respuesta.status == true){
-      storage.set('authToken', respuesta.token);
-      storage.set('authUser', JSON.stringify(respuesta.user));
+      login(respuesta.user, respuesta.token);
+      // storage.set('authToken', respuesta.token);
+      // storage.set('authUser', JSON.stringify(respuesta.user));
       navegar('/');
       show_alerta(respuesta.message, 'success');
     } else {

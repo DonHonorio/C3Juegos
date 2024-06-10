@@ -26,11 +26,11 @@ const Favoritos = () => {
     const idioma = useContext(IdiomaContext);
     const { genero } = useContext(StoreContext);
     
-    const { actualizarFavoritos } = useContext(StoreContext);
+    const { actualizarFavoritos, authUser } = useContext(StoreContext);
 
 
     const avgRatings = useAvgRatings();
-    const juegosFavoritos = useJuegosFavoritos('todos', actualizarFavoritos);
+    const juegosFavoritos = useJuegosFavoritos('todos', actualizarFavoritos, authUser);
 
     return (
       <div id="favoritos">
