@@ -41,6 +41,8 @@ const Home = () => {
 
     const avgRatings = useAvgRatings();
 
+    console.log('AUTH USER FAVORITOS: ', authUser);
+    console.log('ACTUALIZAR FAVORITOS: ', actualizarFavoritos);
     const juegosFavoritos = useJuegosFavoritos('home', actualizarFavoritos, authUser);
 
     // inicializo las variables

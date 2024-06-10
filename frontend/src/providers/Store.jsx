@@ -4,6 +4,7 @@ const API_URL = import.meta.env.VITE_API_BASE_URL;
 import useLikesGames from '../hooks/useLikesGames';
 import useCheckLikes from '../hooks/useCheckLikes';
 import storage from '../Storage/storage';
+import sendRequest from '../servicios/functions';
 
 const Store = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
@@ -18,7 +19,9 @@ const Store = ({ children }) => {
     if (token) {
       setAuthToken(token);
     }
-  }, []);
+    login(JSON.parse(user), token);
+    }, []);
+  console.log('user: ', authUser, 'token: ', authToken);
 
   const login = (user, token) => {
     setAuthUser(user);
@@ -37,7 +40,7 @@ const Store = ({ children }) => {
   // Hook que recupera la cantidad de likes de los juegos
   const {likesGames} = useLikesGames();
   // Hook que recupera si el usuario ha dado like a cada juego
-  const {checkLikes} =  useCheckLikes(authUser);
+  // const {checkLikes} =  useCheckLikes(authUser);
 
   // Estado que almacena el género seleccionado
   const [genero, setGenero] = useState('TODOS');
@@ -46,16 +49,16 @@ const Store = ({ children }) => {
   const [likes, setLikes]                 = useState(null);
   const [cantidadLikes, setCantidadLikes] = useState(null);
   // Estado que almacena la imagen de perfil del usuario
-  const [avatarUser, setAvatarUser]       = useState(`${API_URL}/api/user/fotoPerfil/${(authUser) ? authUser.id : 0}`);
+  const [avatarUser, setAvatarUser]       = useState(0);
   const [fileList, setFileList] = useState( 
-      authUser && authUser.fotoPerfil ?
-          [ {
-            uid: '-1',
-            name: 'image.png',
-            status: 'done',
-            url: `${API_URL}/api/user/fotoPerfil/${(authUser) ? authUser.id : 0}`,
-          },]
-        : [] 
+      // authUser && authUser.fotoPerfil ?
+      //     [ {
+      //       uid: '-1',
+      //       name: 'image.png',
+      //       status: 'done',
+      //       url: `${API_URL}/api/user/fotoPerfil/${(authUser) ? authUser.id : 0}`,
+      //     },]
+      //   : [] 
       );
 
   useEffect(() => {
@@ -63,9 +66,30 @@ const Store = ({ children }) => {
   }, [likesGames]);
 
   useEffect(() => {
-    setLikes(checkLikes);
-    console.log('checkLikes', checkLikes);  
+    if (authUser) {
+      fetchData();
+      setAvatarUser(`${API_URL}/api/user/fotoPerfil/${authUser.id}`)
+      setFileList( 
+        authUser && authUser.fotoPerfil ?
+            [ {
+              uid: '-1',
+              name: 'image.png',
+              status: 'done',
+              url: `${API_URL}/api/user/fotoPerfil/${(authUser) ? authUser.id : 0}`,
+            },]
+          : [] 
+        );
+    } else {
+      setLikes([]);
+    }
+    setAcutalizarFavoritos(e => e + 1);
+    // console.log(' checkLikes', checkLikes);  
   }, [authUser]);
+
+  async function fetchData(){
+    let respuesta = await sendRequest('GET', null, `/api/games/checkLikes`, '',false, true);
+    setLikes(respuesta.checkLikes);
+  }
 
   const [actualizarFavoritos, setAcutalizarFavoritos] = useState(0);
 

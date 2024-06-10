@@ -9,7 +9,7 @@ const useCheckLikes = (authUser) => {
   async function fetchData(){
 
     let resultado;
-
+    console.log('AUTH USER: ',authUser);
     if (authUser) {
       let respuesta = await sendRequest('GET', null, `/api/games/checkLikes`, '',false, true);
       resultado = respuesta.checkLikes;
