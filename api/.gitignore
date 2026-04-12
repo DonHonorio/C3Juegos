@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/juegos
+/public/perfiles
 /storage/*.key
 /vendor
 .env
