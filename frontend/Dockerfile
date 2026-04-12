@@ -10,8 +10,11 @@ RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Elimina la config por defecto y usa la tuya
+RUN rm /etc/nginx/conf.d/default.conf
+
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
