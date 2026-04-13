@@ -8,7 +8,7 @@ window._ = require('lodash');
 
 window.axios = require('axios');
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; -> Perjudica a las peticiones en producción, se comenta para evitar problemas con CORS
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
