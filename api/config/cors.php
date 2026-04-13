@@ -5,9 +5,7 @@ return [
     
     'allowed_methods' => ['*'],
     
-    'allowed_origins' => [
-        'https://c3juegos-frontend.qtv68r.easypanel.host',
-    ],
+    'allowed_origins' => ['*'],  // ← Cambiar a wildcard (seguro sin credentials)
     
     'allowed_origins_patterns' => [],
     
@@ -17,5 +15,5 @@ return [
     
     'max_age' => 0,
     
-    'supports_credentials' => true,
+    'supports_credentials' => false,  // ← Cambiar a false
 ];
