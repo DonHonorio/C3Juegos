@@ -28,6 +28,9 @@ RUN composer install --no-dev --optimize-autoloader
 # Permisos
 RUN chown -R www-data:www-data storage bootstrap/cache
 
+# Copiar configuración de PHP personalizada
+COPY docker/php.ini /usr/local/etc/php/conf.d/custom.ini
+
 # Copiar configuración de nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
